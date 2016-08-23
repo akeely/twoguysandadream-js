@@ -68,9 +68,9 @@
     ]
   },
   "scripts": {
-    "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --profile --progress",
+    "dev": "NODE_ENV=development ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --profile --progress",
     "profile": "NODE_ENV=development ./node_modules/webpack/bin/webpack.js --progress --profile --json > webpack-stats.json",
-    "save": "./node_modules/webpack/bin/webpack.js --profile --progress",
+    "save": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --profile --progress",
     "save-to-s3": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --profile --config=webpack.config.s3.js",
     "test": "jest __tests__",
     "testv": "jest --verbose __tests__",

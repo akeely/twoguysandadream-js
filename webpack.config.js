@@ -153,7 +153,6 @@ module.exports = {
             _: 'lodash',
             $: 'jquery',
             jQuery: 'jquery',
-            Marionette: 'marionette',
             'window.jQuery': 'jquery'
         }),
         new webpack.optimize.CommonsChunkPlugin({

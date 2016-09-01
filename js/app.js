@@ -1,5 +1,2 @@
-var tests = require('./test.js');
+require('./pages/Foo');
 
-var auction = require('./pages/Auction');
-
-console.log(tests);

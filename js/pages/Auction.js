@@ -1,8 +1,12 @@
+
 import {
+    React,
     Component
 } from 'react';
 
-var ReactDOM = require('react-dom');
+import {
+    render
+} from 'react-dom';
 
 var EXPIRED = 'EXPIRED';
 
@@ -246,7 +250,7 @@ class Bid extends Component {
     }
 }
 
-ReactDOM.render(
+render(
     <App pollInterval="500" />,
     document.getElementById('auctionBoard')
   );

@@ -10,7 +10,6 @@
     "__dirname": true,
     "$": true,
     "jQuery": true,
-    "Marionnette": true,
     "module": true,
     "process": true,
     "React": true,

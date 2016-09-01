@@ -3,10 +3,6 @@ import {
     Component
 } from 'react';
 
-import {
-    render
-} from 'react-dom';
-
 class Foo extends Component {
 
     render() {
@@ -16,7 +12,4 @@ class Foo extends Component {
     }
 }
 
-render(
-    <Foo />,
-    document.getElementById('auctionBoard')
-  );
+export default Foo;

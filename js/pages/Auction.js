@@ -1,20 +1,18 @@
 
-import {
-    React,
-    Component
-} from 'react';
-
-import {
-    render
-} from 'react-dom';
+import React from 'react';
 
 var EXPIRED = 'EXPIRED';
 
-class App extends Component {
+export class App extends React.Component {
 
-    getInitialState() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            auctionPlayers: []
+        };
 
-        return ({auctionPlayers: []});
+        this.mergePlayers = this.mergePlayers.bind(this);
+        this.loadAuctionBoard = this.loadAuctionBoard.bind(this);
     };
 
     componentDidMount() {
@@ -99,7 +97,7 @@ class App extends Component {
     };
 };
 
-class AuctionBoard extends Component {
+class AuctionBoard extends React.Component {
     render() {
         var bids = this.props.auctionPlayers.map((bid) =>
             <Bid bid={bid} key={'bid.' + bid.player.id} />
@@ -125,7 +123,7 @@ class AuctionBoard extends Component {
     };
 };
 
-class BidEntry extends Component {
+class BidEntry extends React.Component {
 
     minBid() {
         if (this.props.bid.amount < 10) {
@@ -178,7 +176,7 @@ class BidEntry extends Component {
     };
 };
 
-class RemoveBid extends Component {
+class RemoveBid extends React.Component {
     render() {
         return (
             <a href="#" onClick={this.props.bid.removeFunction}>
@@ -188,7 +186,7 @@ class RemoveBid extends Component {
     };
 };
 
-class BidColumn extends Component {
+class BidColumn extends React.Component {
     render() {
 
         if (this.props.bid.secondsRemaining === EXPIRED) {
@@ -199,7 +197,7 @@ class BidColumn extends Component {
     }
 }
 
-class Bid extends Component {
+class Bid extends React.Component {
 
     toTimeString(time) {
         var minutes = Math.floor(time / 60);
@@ -250,8 +248,4 @@ class Bid extends Component {
     }
 }
 
-render(
-    <App pollInterval="500" />,
-    document.getElementById('auctionBoard')
-  );
 

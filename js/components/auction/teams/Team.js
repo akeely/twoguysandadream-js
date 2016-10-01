@@ -2,6 +2,12 @@ import React from 'react';
 
 export default class Team extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.updateTeam = this.updateTeam.bind(this);
+    }
+
     updateTeam() {
         this.props.updateTeam(this.props.team.id);
     }

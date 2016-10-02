@@ -21,11 +21,13 @@
   },
   "devDependencies": {
     "babel-eslint": "7.0.0",
+    "es6-set": "0.1.4",
     "eslint": "3.7.0",
     "eslint-friendly-formatter": "2.0.6",
     "eslint-loader": "1.5.0",
     "eslint-plugin-import": "2.0.0",
     "eslint-plugin-react": "6.3.0",
+    "object-assign": "4.1.0",
     "webpack": "1.13.2",
     "webpack-dev-server": "1.16.1"
   },

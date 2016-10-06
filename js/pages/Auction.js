@@ -1,100 +1,39 @@
 
 import React from 'react';
+import {
+    connect
+} from 'react-redux';
+import {
+    bindActionCreators
+} from 'redux';
 
 import AuctionBoard from '../components/auction/AuctionBoard';
+import * as Actions from '../actions/Auction';
 
-var EXPIRED = 'EXPIRED';
-
-export class App extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            auctionPlayers: []
-        };
-
-        this.mergePlayers = this.mergePlayers.bind(this);
-        this.loadAuctionBoard = this.loadAuctionBoard.bind(this);
-    };
+class Auction extends React.Component {
 
     componentDidMount() {
-        this.loadAuctionBoard();
-        setInterval(this.loadAuctionBoard, this.props.pollInterval);
-    };
-
-    getMatchingBid(existing, bids) {
-        var playerId = existing.player.id;
-        var existingBid = existing.amount;
-
-        for (var i = 0; i < bids.length; i++) {
-            if (bids[i].player.id === playerId) {
-                if (bids[i].amount !== existingBid) {
-                    bids[i].isNew = true;
-                } else {
-                    bids[i].isNew = false;
-                }
-                return bids[i];
-            }
-        }
-
-        return null;
-    };
-
-    mergePlayers(existing, updated) {
-
-        var mergedBids = [];
-
-        for (var i = 0; i < existing.length; i++) {
-            var updatedBid = this.getMatchingBid(existing[i], updated);
-
-            if (updatedBid === null) {
-                existing[i].secondsRemaining = EXPIRED;
-                existing[i].removeFunction = this.removePlayer.bind(this, existing[i].player.id);
-                mergedBids.push(existing[i]);
-            } else {
-                mergedBids.push(updatedBid);
-            }
-        }
-
-        for (var i = 0; i < updated.length; i++) {
-            var existingBid = this.getMatchingBid(updated[i], existing);
-
-            if (existingBid === null) {
-                updated[i].isNew = true;
-                mergedBids.push(updated[i]);
-            }
-        }
-
-        return mergedBids;
-    };
-
-    filterOutPlayer(playerId, bid) {
-        return playerId !== bid.player.id;
-    };
-
-    removePlayer(id) {
-
-        var filterId = this.filterOutPlayer.bind(this, id);
-        var updatedState = this.state.auctionPlayers.filter(filterId);
-
-        this.setState({auctionPlayers: updatedState});
-    };
-
-    loadAuctionBoard() {
-
-        var leagueId = $("meta[name='_league_id'").attr('content');
-
-        $.ajax('/api/league/' + leagueId + '/bid').done((response) => {
-
-            var merged = this.mergePlayers(this.state.auctionPlayers, response);
-
-            this.setState({auctionPlayers: merged});
-        });
+        Actions.getAuctionBoard();
+        setInterval(Actions.getAuctionBoard, this.props.pollInterval);
     };
 
     render() {
         return (
-            <AuctionBoard auctionPlayers={this.state.auctionPlayers} />
+            <AuctionBoard auctionPlayers={this.props.auctionPlayers} />
         );
     };
 };
+
+function mapStateToProps(state) {
+  return {
+      auctionPlayers: state.auctionPlayers
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(Actions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auction);

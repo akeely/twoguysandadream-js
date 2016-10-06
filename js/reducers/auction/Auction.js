@@ -42,22 +42,26 @@ const getMatchingBid = (existing, bids) => {
  */
 const getAuctionBoard = (existing, updated) => {
 
-    var mergedBids = [];
+    let mergedBids = [];
 
-    for (var i = 0; i < existing.length; i++) {
-        var updatedBid = getMatchingBid(existing[i], updated);
+    for (let i = 0; i < existing.length; i++) {
+        const updatedBid = getMatchingBid(existing[i], updated);
 
         if (updatedBid === null) {
             existing[i].secondsRemaining = EXPIRED;
             existing[i].removeFunction = this.removePlayer.bind(this, existing[i].player.id);
-            mergedBids.push(existing[i]);
+
+            mergedBids = [
+                ...mergedBids,
+                existing[i]
+            ];
         } else {
             mergedBids.push(updatedBid);
         }
     }
 
-    for (var i = 0; i < updated.length; i++) {
-        var existingBid = getMatchingBid(updated[i], existing);
+    for (let i = 0; i < updated.length; i++) {
+        const existingBid = getMatchingBid(updated[i], existing);
 
         if (existingBid === null) {
             updated[i].isNew = true;
@@ -75,7 +79,7 @@ export default function auction(state = initialState, action) {
           const updatedAuctionPlayers = getAuctionBoard(state.auctionPlayers, action.auctionPlayers);
 
           return {
-              //...state,
+              ...state,
               //...getAuctionBoard(state, action)
               auctionPlayers: updatedAuctionPlayers
           };

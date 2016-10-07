@@ -1,6 +1,8 @@
-import GET_AUCTION_BOARD from '../../actions/Auction';
+import {
+    GET_AUCTION_BOARD
+} from '../../actions/Auction';
 
-const initialState = {
+export const initialState = {
     auctionPlayers: []
 };
 
@@ -69,23 +71,20 @@ const getAuctionBoard = (existing, updated) => {
         }
     }
 
-    return mergedBids;
+    return {auctionPlayers: mergedBids};
 };
 
 export default function auction(state = initialState, action) {
-  switch (action.type) {
-      case GET_AUCTION_BOARD:
 
-          const updatedAuctionPlayers = getAuctionBoard(state.auctionPlayers, action.auctionPlayers);
-
-          return {
+    switch (action.type) {
+        case GET_AUCTION_BOARD:
+            return {
               ...state,
-              //...getAuctionBoard(state, action)
-              auctionPlayers: updatedAuctionPlayers
-          };
-      default:
-          return state;
-  }
+              ...getAuctionBoard(state, action.auctionPlayers)
+            };
+        default:
+            return state;
+    }
 }
 
 

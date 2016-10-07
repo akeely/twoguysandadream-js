@@ -4,16 +4,16 @@ export const GET_AUCTION_BOARD = 'GET_AUCTION_BOARD';
 
 export function getAuctionBoard() {
 
-    var auctionPlayers = [];
+    let auctionPlayers = [];
 
-    var leagueId = $("meta[name='_league_id'").attr('content');
+    const leagueId = $("meta[name='_league_id'").attr('content');
 
-    $.ajax('/api/league/' + leagueId + '/bid').done((response) => {
+    $.ajax('/api/league/' + leagueId + '/bid', {async: false}).done((response) => {
         auctionPlayers = response;
     });
-
+    
     return {
         type: GET_AUCTION_BOARD,
-        auctionPlayers
+        auctionPlayers: [...auctionPlayers]
     };
 };

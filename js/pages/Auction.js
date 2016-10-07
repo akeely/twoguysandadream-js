@@ -13,11 +13,12 @@ import * as Actions from '../actions/Auction';
 class Auction extends React.Component {
 
     componentDidMount() {
-        Actions.getAuctionBoard();
-        setInterval(Actions.getAuctionBoard, this.props.pollInterval);
+        this.props.actions.getAuctionBoard();
+        setInterval(this.props.actions.getAuctionBoard, this.props.pollInterval);
     };
 
     render() {
+
         return (
             <AuctionBoard auctionPlayers={this.props.auctionPlayers} />
         );

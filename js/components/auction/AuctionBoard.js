@@ -1,10 +1,23 @@
-import React from 'react';
+import React, {
+    Component,
+    PropTypes
+} from 'react';
 
 import AuctionPlayer from './board/AuctionPlayer';
 
-export default class AuctionBoard extends React.Component {
+export default class AuctionBoard extends Component {
+
+    static propTypes = {
+        auctionPlayers: PropTypes.object
+    };
+
     render() {
-        var bids = this.props.auctionPlayers.map((bid) =>
+
+        const {
+            auctionPlayers
+        } = this.props;
+
+        const bids = auctionPlayers.auctionPlayers.map((bid) =>
             <AuctionPlayer bid={bid} key={'bid.' + bid.player.id} />
         );
 

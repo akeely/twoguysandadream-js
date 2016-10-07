@@ -1,7 +1,8 @@
 {
   "plugins":[],
   "presets":[
-    "es2015",
-    "react"
+    "latest",
+    "react",
+    "stage-2"
   ]
 }

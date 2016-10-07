@@ -1,7 +1,5 @@
 
-import {
-    App
-} from './pages/Auction';
+import Auction from './pages/Auction';
 
 import TeamSidebar from './components/auction/TeamSummary';
 
@@ -17,7 +15,7 @@ const store = configureStores();
 
 render(
     <Provider store={store}>
-        <App pollInterval="500" />
+        <Auction pollInterval="500" />
     </Provider>,
     document.getElementById('auctionBoard')
 );

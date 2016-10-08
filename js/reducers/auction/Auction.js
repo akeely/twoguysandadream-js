@@ -1,5 +1,5 @@
 import {
-    GET_AUCTION_BOARD
+    RECEIVE_AUCTION_BOARD
 } from '../../actions/Auction';
 
 export const initialState = {
@@ -77,7 +77,7 @@ const getAuctionBoard = (existing, updated) => {
 export default function auction(state = initialState, action) {
 
     switch (action.type) {
-        case GET_AUCTION_BOARD:
+        case RECEIVE_AUCTION_BOARD:
             return {
               ...state,
               ...getAuctionBoard(state, action.auctionPlayers)

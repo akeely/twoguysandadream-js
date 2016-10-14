@@ -20,7 +20,10 @@ class Auction extends React.Component {
     render() {
 
         return (
-            <AuctionBoard auctionPlayers={this.props.auctionPlayers} />
+            <AuctionBoard
+                auctionPlayers={this.props.auctionPlayers}
+                bidFunction={this.props.actions.putBid}
+            />
         );
     };
 };

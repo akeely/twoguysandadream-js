@@ -16,18 +16,18 @@ export default class AuctionPlayer extends React.Component {
 
     render() {
 
-        var timeString = this.props.bid.secondsRemaining;
+        let timeString = this.props.bid.secondsRemaining;
 
         if (timeString !== EXPIRED) {
-            var timeString = this.toTimeString(this.props.bid.secondsRemaining);
+            timeString = this.toTimeString(this.props.bid.secondsRemaining);
         }
 
-        var activeTeam = $("meta[name='_team_id'").attr('content');
-        var teamId = this.props.bid.teamId;
-        var secondsRemaining = this.props.bid.secondsRemaining;
-        var isNew = this.props.bid.isNew;
+        const activeTeam = $("meta[name='_team_id']").attr('content');
+        const teamId = this.props.bid.teamId;
+        const secondsRemaining = this.props.bid.secondsRemaining;
+        const isNew = this.props.bid.isNew;
 
-        var highlightClass = '';
+        let highlightClass = '';
 
         if (secondsRemaining === EXPIRED) {
             highlightClass = 'danger';
@@ -48,7 +48,10 @@ export default class AuctionPlayer extends React.Component {
                 <td>{this.props.bid.team}</td>
                 <td className={this.props.bid.secondsRemaining < 21 ? 'warning' : ''}>{timeString}</td>
                 <td className="text-center" width="110">
-                    <BidColumn bid={this.props.bid} />
+                    <BidColumn
+                        bid={this.props.bid}
+                        bidFunction={this.props.bidFunction}
+                    />
                 </td>
             </tr>
         );

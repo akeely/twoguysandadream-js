@@ -2,49 +2,55 @@ import React from 'react';
 
 export default class BidEntry extends React.Component {
 
-    minBid() {
-        if (this.props.bid.amount < 10) {
-            return this.props.bid.amount + 0.5;
+    constructor(props) {
+        super(props);
+        this.bid = this.bid.bind(this);
+    }
+
+    minBid(currentBid) {
+        if (currentBid < 10) {
+            return currentBid + 0.5;
         }
 
-        return this.props.bid.amount + 1;
+        return currentBid + 1;
     };
 
-    stepAmount() {
+    stepAmount(currentBid) {
 
-        if (this.props.bid.amount < 10) {
+        if (currentBid < 10) {
             return 0.5;
         }
 
         return 1;
     };
 
-    bidId() {
-        return this.props.bid.player.id + '.bid.amount';
+    bidId(playerId) {
+        return `${playerId}.bid.amount`;
     };
 
     bid() {
 
-        var token = $("meta[name='_csrf']").attr('content');
-        var header = $("meta[name='_csrf_header']").attr('content');
+        const playerId = this.props.bid.player.id;
+        const amount = document.getElementById(this.bidId(playerId)).value;
 
-        $.ajax({
-            'url': '/api/league/1/bid/' + this.props.bid.player.id,
-            'data': JSON.stringify({ amount: document.getElementById(this.bidId()).value }),
-            'type': 'PUT',
-            'processData': false,
-            'contentType': 'application/json',
-            'headers': {
-                [header]: token
-            }
-        });
+        this.props.bidFunction(playerId, amount);
     };
 
     render() {
 
+        const currentBid = this.props.bid.amount;
+        const playerId = this.props.bid.player.id;
+
         return (
             <div className="input-group input-group-sm">
-                <input aria-label="Bid" className="form-control" id={this.bidId()} min={this.minBid()} step={this.stepAmount()} type="number" />
+                <input
+                    aria-label="Bid"
+                    className="form-control"
+                    id={this.bidId(playerId)}
+                    min={this.minBid(currentBid)}
+                    step={this.stepAmount(currentBid)}
+                    type="number"
+                />
                 <div className="input-group-btn">
                     <button aria-label="Bid" className="btn btn-default" onClick={this.bid} type="button">Bid</button>
                 </div>

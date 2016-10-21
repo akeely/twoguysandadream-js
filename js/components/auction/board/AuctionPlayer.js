@@ -1,4 +1,6 @@
 import React from 'react';
+import * as moment from 'moment';
+import 'moment-duration-format';
 
 import BidColumn from './BidColumn';
 
@@ -11,12 +13,8 @@ export default class AuctionPlayer extends React.Component {
         if (state === State.EXPIRED) {
             return 'EXPIRED';
         }
-        
-        var minutes = Math.floor(time / 60);
-        var seconds = time - (minutes * 60);
 
-        if (seconds < 10) {seconds = '0'+seconds;}
-        return minutes + ':' + seconds;
+        return moment.duration(time, 'seconds').format('d[d] hh:mm:ss');
     }
 
     render() {

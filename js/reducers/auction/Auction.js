@@ -6,7 +6,13 @@ export const initialState = {
     auctionPlayers: []
 };
 
-const EXPIRED = 'EXPIRED';
+export const State = {
+    AVAILABLE: 'available',
+    NEW: 'new',
+    UPDATED: 'updated',
+    EXPIRING: 'expiring',
+    EXPIRED: 'expired'
+};
 
 /**
  * Find the updated bid for a given player.
@@ -19,12 +25,12 @@ const getMatchingBid = (existing, bids) => {
     var playerId = existing.player.id;
     var existingBid = existing.amount;
 
-    for (var i = 0; i < bids.length; i++) {
+    for (let i = 0; i < bids.length; i++) {
         if (bids[i].player.id === playerId) {
             if (bids[i].amount !== existingBid) {
-                bids[i].isNew = true;
+                bids[i].state = State.UPDATED;
             } else {
-                bids[i].isNew = false;
+                bids[i].isNew = State.AVAILABLE;
             }
             return bids[i];
         }
@@ -50,13 +56,11 @@ const getAuctionBoard = (existing, updated) => {
         const updatedBid = getMatchingBid(existing[i], updated);
 
         if (updatedBid === null) {
-            existing[i].secondsRemaining = EXPIRED;
-            existing[i].removeFunction = this.removePlayer.bind(this, existing[i].player.id);
+            existing[i].state = State.EXPIRED;
+            //existing[i].secondsRemaining = EXPIRED;
+            //existing[i].removeFunction = this.removePlayer.bind(this, existing[i].player.id);
 
-            mergedBids = [
-                ...mergedBids,
-                existing[i]
-            ];
+            mergedBids.push(existing[i]);
         } else {
             mergedBids.push(updatedBid);
         }
@@ -66,7 +70,7 @@ const getAuctionBoard = (existing, updated) => {
         const existingBid = getMatchingBid(updated[i], existing);
 
         if (existingBid === null) {
-            updated[i].isNew = true;
+            updated[i].state = State.NEW;
             mergedBids.push(updated[i]);
         }
     }
@@ -80,7 +84,7 @@ export default function auction(state = initialState, action) {
         case RECEIVE_AUCTION_BOARD:
             return {
               ...state,
-              ...getAuctionBoard(state, action.auctionPlayers)
+              ...getAuctionBoard(state.auctionPlayers, action.auctionPlayers)
             };
         default:
             return state;

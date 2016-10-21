@@ -3,12 +3,12 @@ import React from 'react';
 import BidEntry  from './BidEntry';
 import RemoveBid from './RemoveBid';
 
-var EXPIRED = 'EXPIRED';
+import {State} from '../../../reducers/auction/Auction';
 
 export default class BidColumn extends React.Component {
     render() {
 
-        if (this.props.bid.secondsRemaining === EXPIRED) {
+        if (this.props.bid.state === State.EXPIRED) {
             return (<RemoveBid bid={this.props.bid} />);
         } else {
             return (

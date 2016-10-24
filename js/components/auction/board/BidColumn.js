@@ -9,7 +9,11 @@ export default class BidColumn extends React.Component {
     render() {
 
         if (this.props.bid.state === State.EXPIRED) {
-            return (<RemoveBid bid={this.props.bid} />);
+            return (
+                <RemoveBid
+                    bid={this.props.bid}
+                    removeFunction={this.props.removeFunction}
+                />);
         } else {
             return (
                 <BidEntry

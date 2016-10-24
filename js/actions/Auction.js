@@ -7,6 +7,7 @@ export const ERROR_AUCTION_BOARD = 'ERROR_AUCTION_BOARD';
 export const ATTEMPT_BID = 'ATTEMPT_BID';
 export const ACCEPT_BID = 'ACCEPT_BID';
 export const FAILED_BID = 'FAILED_BID';
+export const REMOVE_BID = 'REMOVE_BID';
 
 function requestAuctionBoard() {
     return {
@@ -61,6 +62,14 @@ function attemptBid(playerId) {
 
     return {
         type: ATTEMPT_BID,
+        playerId
+    };
+}
+
+export function removeBid(playerId) {
+
+    return {
+        type: REMOVE_BID,
         playerId
     };
 }

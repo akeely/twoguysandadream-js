@@ -23,6 +23,7 @@ class Auction extends React.Component {
             <AuctionBoard
                 auctionPlayers={this.props.auctionPlayers}
                 bidFunction={this.props.actions.putBid}
+                removeFunction={this.props.actions.removeBid}
             />
         );
     };

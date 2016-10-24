@@ -49,6 +49,7 @@ export default class AuctionPlayer extends React.Component {
                     <BidColumn
                         bid={this.props.bid}
                         bidFunction={this.props.bidFunction}
+                        removeFunction={this.props.removeFunction}
                     />
                 </td>
             </tr>

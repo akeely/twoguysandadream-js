@@ -1,5 +1,6 @@
 import {
-    RECEIVE_AUCTION_BOARD
+    RECEIVE_AUCTION_BOARD,
+    REMOVE_BID
 } from '../../actions/Auction';
 
 export const initialState = {
@@ -78,6 +79,13 @@ const getAuctionBoard = (existing, updated) => {
     return {auctionPlayers: mergedBids};
 };
 
+const removePlayer = (bids, playerId) => {
+
+    const filteredBids = bids.filter((b) => b.player.id !== playerId);
+
+    return {auctionPlayers: filteredBids};
+};
+
 export default function auction(state = initialState, action) {
 
     switch (action.type) {
@@ -85,6 +93,11 @@ export default function auction(state = initialState, action) {
             return {
               ...state,
               ...getAuctionBoard(state.auctionPlayers, action.auctionPlayers)
+            };
+        case REMOVE_BID:
+            return {
+                ...state,
+                ...removePlayer(state.auctionPlayers, action.playerId)
             };
         default:
             return state;

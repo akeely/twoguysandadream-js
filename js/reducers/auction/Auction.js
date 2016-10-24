@@ -30,7 +30,7 @@ const getMatchingBid = (existing, bids) => {
             if (bids[i].amount !== existingBid) {
                 bids[i].state = State.UPDATED;
             } else {
-                bids[i].isNew = State.AVAILABLE;
+                bids[i].state = State.AVAILABLE;
             }
             return bids[i];
         }

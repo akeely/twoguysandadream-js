@@ -14,7 +14,7 @@ export default class AuctionPlayer extends React.Component {
             return 'EXPIRED';
         }
 
-        return moment.duration(time, 'seconds').format('d[d] hh:mm:ss');
+        return moment.duration(time, 'seconds').format('m:ss', {trim: false});
     }
 
     render() {

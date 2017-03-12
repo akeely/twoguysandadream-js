@@ -1,45 +1,18 @@
 {
-  "name": "twoguysandadream",
-  "version": "2.0.0",
-  "license": "GNU General Public License V3.0",
+  "name": "twoguysandadream-js",
+  "version": "0.1.0",
   "private": true,
-  "description": "Javascript for twoguysandadream.com",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/akeely/twoguysandadream-js.git"
-  },
   "dependencies": {
-    "axios": "0.14.0",
-    "babel-core": "6.17.0",
-    "babel-loader": "6.2.5",
-    "babel-preset-latest": "6.16.0",
-    "babel-preset-react": "6.16.0",
-    "babel-preset-stage-2": "6.17.0",
-    "jquery": "3.1.1",
-    "moment": "2.15.1",
-    "moment-duration-format": "1.3.0",
-    "react": "15.3.2",
-    "react-dom": "15.3.2",
-    "react-redux": "4.4.5",
-    "redux": "3.6.0",
-    "redux-thunk": "2.1.0"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "babel-eslint": "7.0.0",
-    "es6-set": "0.1.4",
-    "eslint": "3.7.0",
-    "eslint-friendly-formatter": "2.0.6",
-    "eslint-loader": "1.5.0",
-    "eslint-plugin-import": "2.0.0",
-    "eslint-plugin-react": "6.3.0",
-    "object-assign": "4.1.0",
-    "webpack": "1.13.2",
-    "webpack-dev-server": "1.16.1"
+    "react-scripts": "0.9.5"
   },
   "scripts": {
-    "dev": "NODE_ENV=development ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --profile --progress",
-    "profile": "NODE_ENV=development ./node_modules/webpack/bin/webpack.js --progress --profile --json > webpack-stats.json",
-    "save": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --profile --progress",
-    "save-to-s3": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --profile --config=webpack.config.s3.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }

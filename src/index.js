@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import './index.css';
 
 import { Provider } from 'react-redux';
+
+import createHistory from 'history/createBrowserHistory'
 
 import Auction from './pages/Auction';
 
 import configureStores from './stores/configureStores';
 
-const store = configureStores();
+const history = createHistory()
+
+const store = configureStores(history);
 
 ReactDOM.render(
     <Provider store={store}>

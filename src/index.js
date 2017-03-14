@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
 import './index.css';
 
 import { Provider } from 'react-redux';
+
+import { Route } from 'react-router'
+
+import { ConnectedRouter } from 'react-router-redux'
 
 import createHistory from 'history/createBrowserHistory'
 
@@ -16,7 +21,12 @@ const store = configureStores(history);
 
 ReactDOM.render(
     <Provider store={store}>
-        <Auction pollInterval="500" />
+        <ConnectedRouter history={history}>
+            <div>
+                <Route exact path="/" component={App} />
+                <Route path="/auction" component={Auction} />
+            </div>
+        </ConnectedRouter>
     </Provider>,
   document.getElementById('root')
 );

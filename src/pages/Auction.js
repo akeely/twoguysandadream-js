@@ -14,7 +14,7 @@ class Auction extends React.Component {
 
     componentDidMount() {
         this.props.actions.getAuctionBoard();
-        setInterval(this.props.actions.getAuctionBoard, this.props.pollInterval);
+        setInterval(this.props.actions.getAuctionBoard, 500);
     };
 
     render() {

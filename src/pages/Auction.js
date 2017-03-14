@@ -27,7 +27,7 @@ class Auction extends React.Component {
             />
         );
     };
-};
+}
 
 function mapStateToProps(state) {
   return {

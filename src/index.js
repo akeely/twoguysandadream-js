@@ -28,7 +28,7 @@ ReactDOM.render(
         <ConnectedRouter history={history}>
             <div>
                 <Route exact path="/" component={App} />
-                <Route path="/auction" component={Auction} />
+                <Route path="/league/:leagueId/auction" component={Auction} />
             </div>
         </ConnectedRouter>
     </Provider>,

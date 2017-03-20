@@ -29,16 +29,12 @@ function errorAuctionBoard(response) {
     };
 }
 
-export function getAuctionBoard() {
+export function getAuctionBoard(leagueId) {
 
     return (dispatch) => {
         dispatch(requestAuctionBoard());
 
-        // TODO
-        //const leagueId = $("meta[name='_league_id']").attr('content');
-
-        // TODO
-        axios.get('/api/league/${leagueId}/bid')
+        axios.get(`http://localhost:8080/api/league/${leagueId}/bid`)
             .then((response)  => dispatch(receiveAuctionBoard(response)))
             .catch((response) => dispatch(errorAuctionBoard(response)));
     };
@@ -76,20 +72,15 @@ export function removeBid(playerId) {
     };
 }
 
-export function putBid(playerId, amount) {
+export function putBid(leagueId, playerId, amount) {
 
     return (dispatch) => {
         dispatch(attemptBid());
 
-        // TODO
-        //const leagueId = $("meta[name='_league_id']").attr('content');
+        const token = document.querySelector("meta[name='_csrf']").attr('content');
+        const header = document.querySelector("meta[name='_csrf_header']").attr('content');
 
-        //const token = $("meta[name='_csrf']").attr('content');
-        //const header = $("meta[name='_csrf_header']").attr('content');
-
-        // TODO
-        //axios.put(`/api/league/${leagueId}/bid/${playerId}`, {amount}, {headers: {[header]: token}})
-        axios.put('/api/league/${leagueId}/bid/${playerId}', {amount}, {headers: {'header': 'token'}})
+        axios.put(`http://localhost:8080/api/league/${leagueId}/bid/${playerId}`, {amount}, {headers: {[header]: token}})
             .then((response)  => dispatch(acceptBid(response)))
             .catch((response) => dispatch(failedBid(response)));
     };

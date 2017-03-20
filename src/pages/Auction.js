@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
     connect
@@ -12,9 +11,14 @@ import * as Actions from '../actions/Auction';
 
 class Auction extends React.Component {
 
+    loadBoard() {
+
+        this.props.actions.getAuctionBoard(this.props.leagueId);
+    };
+
     componentDidMount() {
-        this.props.actions.getAuctionBoard();
-        setInterval(this.props.actions.getAuctionBoard, 500);
+        this.loadBoard();
+        setInterval(this.loadBoard.bind(this), 500);
     };
 
     render() {
@@ -29,10 +33,12 @@ class Auction extends React.Component {
     };
 }
 
-function mapStateToProps(state) {
-  return {
-      auctionPlayers: state.auctionPlayers
-  };
+function mapStateToProps(state, ownProps) {
+
+    return {
+        auctionPlayers: state.auctionPlayers,
+        leagueId: ownProps.match.params.leagueId
+    };
 }
 
 function mapDispatchToProps(dispatch) {

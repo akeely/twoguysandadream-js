@@ -1,17 +1,22 @@
 
 import React from 'react';
 
+import axios from 'axios';
+
 import Rosters from './teams/Rosters';
 import Teams from './teams/Teams';
 
-export default class TeamSidebar extends React.Component {
+let intervalId = null;
+
+export default class TeamSummary extends React.Component {
 
     constructor(props) {
         super(props);
 
-        var activeTeam = $("meta[name='_team_id'").attr('content');
+        // TODO
+        //var activeTeam = $("meta[name='_team_id'").attr('content');
 
-        this.state = {teams: [], currentTeam: activeTeam};
+        this.state = {teams: [], currentTeam: 314};
 
         this.loadTeams = this.loadTeams.bind(this);
         this.updateCurrentTeam = this.updateCurrentTeam.bind(this);
@@ -19,7 +24,15 @@ export default class TeamSidebar extends React.Component {
 
     componentDidMount() {
         this.loadTeams();
-        setInterval(this.loadTeams, this.props.pollInterval);
+        intervalId = setInterval(this.loadTeams, this.props.pollInterval);
+    }
+
+    componentWillUnmount() {
+
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
     }
 
     compareTeams(a, b) {
@@ -28,12 +41,12 @@ export default class TeamSidebar extends React.Component {
 
     loadTeams() {
 
-        var leagueId = $("meta[name='_league_id'").attr('content');
+        // TODO
+        const leagueId = 27;
 
-        $.ajax('/api/league/' + leagueId + '/team').done((response) => {
+        axios.get(`http://localhost:8080/api/league/${leagueId}/team`)
+            .then((response)  => this.setState({teams: response.data.sort(this.compareTeams)}));
 
-            this.setState({teams: response.sort(this.compareTeams)});
-        });
     }
 
     updateCurrentTeam(newTeam) {

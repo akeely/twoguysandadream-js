@@ -7,14 +7,14 @@ import {
 } from 'redux';
 
 import AuctionBoard from '../components/auction/AuctionBoard';
+import TeamSummary from '../components/auction/TeamSummary';
 import NavBar from '../components/NavBar';
 import * as Actions from '../actions/Auction';
-
 
 let intervalId = null;
 
 class Auction extends React.Component {
-    
+
     loadBoard() {
 
         this.props.actions.getAuctionBoard(this.props.leagueId);
@@ -51,7 +51,7 @@ class Auction extends React.Component {
                         </div>
                         <div className="col-md-4">
                             <div className="panel">
-                                <div className="panel-body" id="teamSidebar" />
+                                <TeamSummary pollInterval="2000" />
                             </div>
                         </div>
                     </div>

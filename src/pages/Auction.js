@@ -7,10 +7,14 @@ import {
 } from 'redux';
 
 import AuctionBoard from '../components/auction/AuctionBoard';
+import NavBar from '../components/NavBar';
 import * as Actions from '../actions/Auction';
 
-class Auction extends React.Component {
 
+let intervalId = null;
+
+class Auction extends React.Component {
+    
     loadBoard() {
 
         this.props.actions.getAuctionBoard(this.props.leagueId);
@@ -18,17 +22,42 @@ class Auction extends React.Component {
 
     componentDidMount() {
         this.loadBoard();
-        setInterval(this.loadBoard.bind(this), 500);
+        intervalId = setInterval(this.loadBoard.bind(this), 500);
     };
+
+    componentWillUnmount() {
+
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+    }
 
     render() {
 
         return (
-            <AuctionBoard
-                auctionPlayers={this.props.auctionPlayers}
-                bidFunction={this.props.actions.putBid}
-                removeFunction={this.props.actions.removeBid}
-            />
+            <div>
+                <NavBar leagueId={this.props.leagueId} />
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-8">
+                            <div className="panel">
+                                <AuctionBoard
+                                    auctionPlayers={this.props.auctionPlayers}
+                                    bidFunction={this.props.actions.putBid}
+                                    removeFunction={this.props.actions.removeBid}
+                                />
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                            <div className="panel">
+                                <div className="panel-body" id="teamSidebar" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         );
     };
 }

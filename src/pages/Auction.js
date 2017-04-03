@@ -65,8 +65,8 @@ class Auction extends React.Component {
 function mapStateToProps(state, ownProps) {
 
     return {
-        auctionPlayers: state.auctionPlayers,
-        leagueId: ownProps.match.params.leagueId
+        leagueId: ownProps.match.params.leagueId,
+        ...state.root.auctionPlayers
     };
 }
 

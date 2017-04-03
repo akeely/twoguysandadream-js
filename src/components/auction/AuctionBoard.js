@@ -20,7 +20,7 @@ export default class AuctionBoard extends Component {
             removeFunction
         } = this.props;
 
-        const bids = auctionPlayers.auctionPlayers.map((bid) =>
+        const bids = auctionPlayers.map((bid) =>
             <AuctionPlayer
                 bid={bid}
                 bidFunction={bidFunction}

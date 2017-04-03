@@ -6,34 +6,59 @@ import {
     bindActionCreators
 } from 'redux';
 
-import AuctionBoard from '../components/auction/AuctionBoard';
-import TeamSummary from '../components/auction/TeamSummary';
 import NavBar from '../components/NavBar';
-import * as Actions from '../actions/Auction';
+import * as Actions from '../actions/AddPlayer';
 
-let intervalId = null;
 
 class AddPlayer extends React.Component {
 
-    loadBoard() {
+    loadPlayers() {
 
-        this.props.actions.getAuctionBoard(this.props.leagueId);
+        this.props.actions.getAvailablePlayers(this.props.leagueId);
     };
 
     componentDidMount() {
-        this.loadBoard();
-        intervalId = setInterval(this.loadBoard.bind(this), 500);
+        this.loadPlayers();
     };
 
-    componentWillUnmount() {
-
-        if (intervalId) {
-            clearInterval(intervalId);
-            intervalId = null;
-        }
-    }
-
     render() {
+
+        const availablePlayers = this.props.availablePlayers;
+
+        let Players = () => (
+            <div>
+                <p>Loading...</p>
+            </div>
+        );
+
+        if (availablePlayers.length > 0) {
+            Players = () => {
+                const players = availablePlayers.map((player) =>
+                    <tr key={`available.${player.id}`}>
+                        <td>{player.rank}</td>
+                        <td>{player.name}</td>
+                        <td>{player.realTeam}</td>
+                        <td>{player.positions.map(p => p.name).join('/')}</td>
+                    </tr>
+                );
+
+                return (
+                    <table className="table table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Team</th>
+                            <th>Positions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {players}
+                        </tbody>
+                    </table>
+                );
+            };
+        }
 
         return (
             <div>
@@ -42,16 +67,7 @@ class AddPlayer extends React.Component {
                     <div className="row">
                         <div className="col-md-8">
                             <div className="panel">
-                                <AuctionBoard
-                                    auctionPlayers={this.props.auctionPlayers}
-                                    bidFunction={this.props.actions.putBid}
-                                    removeFunction={this.props.actions.removeBid}
-                                />
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="panel">
-                                <TeamSummary pollInterval="2000" />
+                                <Players />
                             </div>
                         </div>
                     </div>
@@ -65,8 +81,8 @@ class AddPlayer extends React.Component {
 function mapStateToProps(state, ownProps) {
 
     return {
-        auctionPlayers: state.auctionPlayers,
-        leagueId: ownProps.match.params.leagueId
+        leagueId: ownProps.match.params.leagueId,
+        ...state.root.availablePlayers
     };
 }
 

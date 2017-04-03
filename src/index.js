@@ -16,6 +16,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 
 import Auction from './pages/Auction';
+import AddPlayer from './pages/AddPlayer';
 
 import configureStores from './stores/configureStores';
 
@@ -29,6 +30,7 @@ ReactDOM.render(
             <div>
                 <Route exact path="/" component={App} />
                 <Route path="/league/:leagueId/auction" component={Auction} />
+                <Route path="/league/:leagueId/availableplayers" component={AddPlayer} />
             </div>
         </ConnectedRouter>
     </Provider>,

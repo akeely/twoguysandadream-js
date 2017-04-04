@@ -6,6 +6,10 @@ import {
     bindActionCreators
 } from 'redux';
 
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+
+import 'react-bootstrap-table/css/react-bootstrap-table.css';
+
 import NavBar from '../components/NavBar';
 import * as Actions from '../actions/AddPlayer';
 
@@ -25,40 +29,32 @@ class AddPlayer extends React.Component {
 
         const availablePlayers = this.props.availablePlayers;
 
-        let Players = () => (
-            <div>
-                <p>Loading...</p>
-            </div>
+        const formatPositions = (cell, row) => (<span>{cell.map(p => p.name).join('/')}</span>);
+        
+        const Players = () => (
+
+            <BootstrapTable
+                    bordered={false}
+                    data={availablePlayers}
+                    hover
+                    keyField="id"
+                    options={ { noDataText: 'Loading...' } }
+                    pagination
+                    striped>
+                <TableHeaderColumn dataField="rank">Rank</TableHeaderColumn>
+                <TableHeaderColumn
+                        dataField="name"
+                        filter={{type: 'TextFilter'}}>
+                    Name
+                </TableHeaderColumn>
+                <TableHeaderColumn dataField="realTeam">Team</TableHeaderColumn>
+                <TableHeaderColumn
+                        dataField="positions"
+                        dataFormat={formatPositions}>
+                    Positions
+                </TableHeaderColumn>
+            </BootstrapTable>
         );
-
-        if (availablePlayers.length > 0) {
-            Players = () => {
-                const players = availablePlayers.map((player) =>
-                    <tr key={`available.${player.id}`}>
-                        <td>{player.rank}</td>
-                        <td>{player.name}</td>
-                        <td>{player.realTeam}</td>
-                        <td>{player.positions.map(p => p.name).join('/')}</td>
-                    </tr>
-                );
-
-                return (
-                    <table className="table table-striped table-condensed">
-                        <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Name</th>
-                            <th>Team</th>
-                            <th>Positions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {players}
-                        </tbody>
-                    </table>
-                );
-            };
-        }
 
         return (
             <div>
@@ -72,7 +68,6 @@ class AddPlayer extends React.Component {
                         </div>
                     </div>
                 </div>
-
             </div>
         );
     };

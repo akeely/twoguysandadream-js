@@ -8,7 +8,7 @@ import AuctionPlayer from './board/AuctionPlayer';
 export default class AuctionBoard extends Component {
 
     static propTypes = {
-        auctionPlayers: PropTypes.object,
+        auctionPlayers: PropTypes.array,
         bidFunction: PropTypes.func
     };
 

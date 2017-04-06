@@ -18,6 +18,7 @@ import createHistory from 'history/createBrowserHistory'
 
 import Auction from './pages/Auction';
 import AddPlayer from './pages/AddPlayer';
+import DraftResults from './pages/DraftResults';
 
 import configureStores from './stores/configureStores';
 
@@ -32,6 +33,7 @@ ReactDOM.render(
                 <Route exact path="/" component={App} />
                 <Route path="/league/:leagueId/auction" component={Auction} />
                 <Route path="/league/:leagueId/availableplayers" component={AddPlayer} />
+                <Route path="/league/:leagueId/results" component={DraftResults} />
             </div>
         </ConnectedRouter>
     </Provider>,

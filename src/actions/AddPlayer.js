@@ -68,8 +68,8 @@ export function addPlayer(leagueId, playerId) {
     return (dispatch) => {
         dispatch(attemptAdd(playerId));
 
-        const token = document.querySelector("meta[name='_csrf']").attr('content');
-        const header = document.querySelector("meta[name='_csrf_header']").attr('content');
+        const token = document.querySelector("meta[name='_csrf']").getAttribute('content');
+        const header = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
 
         axios.post(`http://localhost:8080/api/league/${leagueId}/bid`, {playerId}, {headers: {[header]: token}})
             .then((response)  => dispatch(acceptAdd(playerId)))

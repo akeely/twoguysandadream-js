@@ -33,7 +33,7 @@ export default class BidEntry extends React.Component {
         const playerId = this.props.bid.player.id;
         const amount = document.getElementById(this.bidId(playerId)).value;
 
-        this.props.bidFunction(playerId, amount);
+        this.props.bidFunction(this.props.leagueId, playerId, amount);
     };
 
     render() {

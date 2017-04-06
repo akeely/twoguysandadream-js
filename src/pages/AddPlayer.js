@@ -9,6 +9,7 @@ import {
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 import 'react-bootstrap-table/css/react-bootstrap-table.css';
+import 'font-awesome/css/font-awesome.css';
 
 import NavBar from '../components/NavBar';
 import * as Actions from '../actions/AddPlayer';
@@ -30,7 +31,16 @@ class AddPlayer extends React.Component {
         const availablePlayers = this.props.availablePlayers;
 
         const formatPositions = (cell, row) => (<span>{cell.map(p => p.name).join('/')}</span>);
-        
+
+        const addFunc = this.props.actions.addPlayer.bind(this, this.props.leagueId);
+
+        const formatAdd = (cell, row) => (
+                <i
+                    className="fa fa-plus-circle fa-lg"
+                    onClick={addFunc.bind(this, cell)}
+                />
+            );
+
         const Players = () => (
 
             <BootstrapTable
@@ -52,6 +62,11 @@ class AddPlayer extends React.Component {
                         dataField="positions"
                         dataFormat={formatPositions}>
                     Positions
+                </TableHeaderColumn>
+                <TableHeaderColumn
+                    dataField="id"
+                    dataFormat={formatAdd}>
+
                 </TableHeaderColumn>
             </BootstrapTable>
         );

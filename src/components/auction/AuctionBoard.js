@@ -25,6 +25,7 @@ export default class AuctionBoard extends Component {
                 bid={bid}
                 bidFunction={bidFunction}
                 key={'bid.' + bid.player.id}
+                leagueId={this.props.leagueId}
                 removeFunction={removeFunction.bind(undefined, bid.player.id)}
             />
         );

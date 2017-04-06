@@ -77,8 +77,8 @@ export function putBid(leagueId, playerId, amount) {
     return (dispatch) => {
         dispatch(attemptBid());
 
-        const token = document.querySelector("meta[name='_csrf']").attr('content');
-        const header = document.querySelector("meta[name='_csrf_header']").attr('content');
+        const token = document.querySelector("meta[name='_csrf']").getAttribute('content');
+        const header = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
 
         axios.put(`http://localhost:8080/api/league/${leagueId}/bid/${playerId}`, {amount}, {headers: {[header]: token}})
             .then((response)  => dispatch(acceptBid(response)))

@@ -19,6 +19,7 @@ export default class BidColumn extends React.Component {
                 <BidEntry
                     bid={this.props.bid}
                     bidFunction={this.props.bidFunction}
+                    leagueId={this.props.leagueId}
                 />
             );
         }

@@ -38,6 +38,7 @@ class AddPlayer extends React.Component {
                 <i
                     className="fa fa-plus-circle fa-lg"
                     onClick={addFunc.bind(this, cell)}
+                    style={{cursor: 'pointer', color: '#337ab7', textAlign: 'center'}}
                 />
             );
 
@@ -57,10 +58,15 @@ class AddPlayer extends React.Component {
                         filter={{type: 'TextFilter'}}>
                     Name
                 </TableHeaderColumn>
-                <TableHeaderColumn dataField="realTeam">Team</TableHeaderColumn>
+                <TableHeaderColumn
+                        dataField="realTeam"
+                        filter={{type: 'TextFilter'}}>
+                    Team
+                </TableHeaderColumn>
                 <TableHeaderColumn
                         dataField="positions"
-                        dataFormat={formatPositions}>
+                        dataFormat={formatPositions}
+                        filter={{type: 'TextFilter'}}>
                     Positions
                 </TableHeaderColumn>
                 <TableHeaderColumn

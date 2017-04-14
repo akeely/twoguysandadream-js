@@ -22,7 +22,7 @@ export default class AuctionPlayer extends React.Component {
         const secondsRemaining = this.props.bid.secondsRemaining;
         const state = this.props.bid.state;
         const timeString = this.toTimeString(secondsRemaining, state);
-        const activeTeam = "foo"; // TODO +$("meta[name='_team_id']").attr('content');
+        const activeTeam = this.props.activeTeam;
         const teamId = this.props.bid.teamId;
 
         let highlightClass = '';

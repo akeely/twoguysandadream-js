@@ -1,10 +1,12 @@
 import {
     RECEIVE_AUCTION_BOARD,
+    RECEIVE_TEAM,
     REMOVE_BID
 } from '../../actions/Auction';
 
 export const initialState = {
-    auctionPlayers: []
+    auctionPlayers: [],
+    activeTeam: {id: -1}
 };
 
 export const State = {
@@ -47,7 +49,7 @@ const getMatchingBid = (existing, bids) => {
  *
  * @param {Object} existing The existing bids on the auction board.
  * @param {Object} updated The current bids returned by the server.
- * @returns {Array} The bids to display on the auction board.
+ * @returns {Object} The bids to display on the auction board.
  */
 const getAuctionBoard = (existing, updated) => {
 
@@ -94,6 +96,11 @@ export default function auction(state = initialState, action) {
               ...state,
               ...getAuctionBoard(state.auctionPlayers, action.auctionPlayers)
             };
+        case RECEIVE_TEAM:
+            return {
+                ...state,
+                activeTeam: action.activeTeam
+            }
         case REMOVE_BID:
             return {
                 ...state,

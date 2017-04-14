@@ -16,7 +16,7 @@ export default class TeamSummary extends React.Component {
         // TODO
         //var activeTeam = $("meta[name='_team_id'").attr('content');
 
-        this.state = {teams: [], currentTeam: 314};
+        this.state = {teams: [], currentTeam: this.props.activeTeam};
 
         this.loadTeams = this.loadTeams.bind(this);
         this.updateCurrentTeam = this.updateCurrentTeam.bind(this);

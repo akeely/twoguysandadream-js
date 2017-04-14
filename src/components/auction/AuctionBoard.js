@@ -8,6 +8,7 @@ import AuctionPlayer from './board/AuctionPlayer';
 export default class AuctionBoard extends Component {
 
     static propTypes = {
+        activeTeam: PropTypes.number,
         auctionPlayers: PropTypes.array,
         bidFunction: PropTypes.func
     };
@@ -15,6 +16,7 @@ export default class AuctionBoard extends Component {
     render() {
 
         const {
+            activeTeam,
             auctionPlayers,
             bidFunction,
             removeFunction
@@ -22,6 +24,7 @@ export default class AuctionBoard extends Component {
 
         const bids = auctionPlayers.map((bid) =>
             <AuctionPlayer
+                activeTeam={activeTeam}
                 bid={bid}
                 bidFunction={bidFunction}
                 key={'bid.' + bid.player.id}

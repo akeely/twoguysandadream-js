@@ -9,6 +9,10 @@ export const ACCEPT_BID = 'ACCEPT_BID';
 export const FAILED_BID = 'FAILED_BID';
 export const REMOVE_BID = 'REMOVE_BID';
 
+export const REQUEST_TEAM = 'REQUEST_TEAM';
+export const RECEIVE_TEAM = 'RECEIVE_TEAM';
+export const ERROR_TEAM = 'ERROR_TEAM';
+
 function requestAuctionBoard() {
     return {
         type: REQUEST_AUCTION_BOARD
@@ -37,6 +41,37 @@ export function getAuctionBoard(leagueId) {
         axios.get(`http://localhost:8080/api/league/${leagueId}/bid`)
             .then((response)  => dispatch(receiveAuctionBoard(response)))
             .catch((response) => dispatch(errorAuctionBoard(response)));
+    };
+}
+
+function requestTeam() {
+    return {
+        type: REQUEST_TEAM
+    };
+}
+
+function receiveTeam(response) {
+    return {
+        type: RECEIVE_TEAM,
+        activeTeam: response.data
+    };
+}
+
+function errorTeam(response) {
+    return {
+        type: ERROR_TEAM,
+        errorResponse: response
+    };
+}
+
+export function getTeam(leagueId) {
+
+    return (dispatch) => {
+        dispatch(requestTeam());
+
+        axios.get(`http://localhost:8080/api/league/${leagueId}/team/me`)
+            .then((response)  => dispatch(receiveTeam(response)))
+            .catch((response) => dispatch(errorTeam(response)));
     };
 }
 

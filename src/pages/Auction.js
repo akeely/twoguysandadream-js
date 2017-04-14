@@ -18,6 +18,7 @@ class Auction extends React.Component {
     loadBoard() {
 
         this.props.actions.getAuctionBoard(this.props.leagueId);
+        this.props.actions.getTeam(this.props.leagueId);
     };
 
     componentDidMount() {
@@ -43,6 +44,7 @@ class Auction extends React.Component {
                         <div className="col-md-8">
                             <div className="panel">
                                 <AuctionBoard
+                                    activeTeam={this.props.activeTeam.id}
                                     auctionPlayers={this.props.auctionPlayers}
                                     bidFunction={this.props.actions.putBid}
                                     leagueId={this.props.leagueId}
@@ -52,7 +54,11 @@ class Auction extends React.Component {
                         </div>
                         <div className="col-md-4">
                             <div className="panel">
-                                <TeamSummary pollInterval="2000" />
+                                <TeamSummary
+                                    activeTeam={this.props.activeTeam.id}
+                                    leagueId={this.props.leagueId}
+                                    pollInterval="2000"
+                                />
                             </div>
                         </div>
                     </div>

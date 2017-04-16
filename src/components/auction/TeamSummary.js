@@ -13,10 +13,7 @@ export default class TeamSummary extends React.Component {
     constructor(props) {
         super(props);
 
-        // TODO
-        //var activeTeam = $("meta[name='_team_id'").attr('content');
-
-        this.state = {teams: [], currentTeam: this.props.activeTeam};
+        this.state = {teams: [], currentTeam: this.props.activeTeam, leagueId: this.props.leagueId};
 
         this.loadTeams = this.loadTeams.bind(this);
         this.updateCurrentTeam = this.updateCurrentTeam.bind(this);
@@ -41,8 +38,7 @@ export default class TeamSummary extends React.Component {
 
     loadTeams() {
 
-        // TODO
-        const leagueId = 27;
+        const leagueId = this.state.leagueId;
 
         axios.get(`http://localhost:8080/api/league/${leagueId}/team`)
             .then((response)  => this.setState({teams: response.data.sort(this.compareTeams)}));

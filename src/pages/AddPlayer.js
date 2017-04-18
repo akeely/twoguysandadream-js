@@ -13,6 +13,7 @@ import 'font-awesome/css/font-awesome.css';
 
 import NavBar from '../components/NavBar';
 import * as Actions from '../actions/AddPlayer';
+import * as TeamActions from '../actions/Team';
 
 
 class AddPlayer extends React.Component {
@@ -20,6 +21,7 @@ class AddPlayer extends React.Component {
     loadPlayers() {
 
         this.props.actions.getAvailablePlayers(this.props.leagueId);
+        this.props.actions.getTeam(this.props.leagueId);
     };
 
     componentDidMount() {
@@ -79,7 +81,10 @@ class AddPlayer extends React.Component {
 
         return (
             <div>
-                <NavBar leagueId={this.props.leagueId} />
+                <NavBar
+                    leagueId={this.props.leagueId}
+                    numAdds={this.props.activeTeam.statistics.adds}
+                />
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8">
@@ -98,13 +103,14 @@ function mapStateToProps(state, ownProps) {
 
     return {
         leagueId: ownProps.match.params.leagueId,
-        ...state.root.availablePlayers
+        ...state.root.availablePlayers,
+        activeTeam: state.root.activeTeam.activeTeam
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        actions: bindActionCreators(Object.assign({}, Actions, TeamActions), dispatch)
     };
 }
 

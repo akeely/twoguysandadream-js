@@ -10,9 +10,9 @@ export const initialState = {
 
 const removePlayer = (availablePlayers, playerId) => {
 
-    const filteredPlayers = availablePlayers.filter((p) => p.player.id !== playerId);
+    const filteredPlayers = availablePlayers.filter((p) => p.id !== playerId);
 
-    return {availablePlayers: filteredPlayers};
+    return filteredPlayers;
 };
 
 export default function addPlayer(state = initialState, action) {
@@ -26,7 +26,7 @@ export default function addPlayer(state = initialState, action) {
         case ACCEPT_ADD:
             return {
                 ...state,
-                ...removePlayer(state.availablePlayers, action.playerId)
+                availablePlayers: removePlayer(state.availablePlayers, action.playerId)
             };
         default:
             return state;

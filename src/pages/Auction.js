@@ -10,6 +10,7 @@ import AuctionBoard from '../components/auction/AuctionBoard';
 import TeamSummary from '../components/auction/TeamSummary';
 import NavBar from '../components/NavBar';
 import * as Actions from '../actions/Auction';
+import * as TeamActions from '../actions/Team';
 
 let intervalId = null;
 
@@ -23,7 +24,7 @@ class Auction extends React.Component {
 
     componentDidMount() {
         this.loadBoard();
-        intervalId = setInterval(this.loadBoard.bind(this), 500);
+        intervalId = setInterval(this.loadBoard.bind(this), 1000);
     };
 
     componentWillUnmount() {
@@ -38,7 +39,10 @@ class Auction extends React.Component {
 
         return (
             <div>
-                <NavBar leagueId={this.props.leagueId} />
+                <NavBar
+                    leagueId={this.props.leagueId}
+                    numAdds={this.props.activeTeam.statistics.adds}
+                />
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8">
@@ -73,13 +77,14 @@ function mapStateToProps(state, ownProps) {
 
     return {
         leagueId: ownProps.match.params.leagueId,
-        ...state.root.auctionPlayers
+        ...state.root.auctionPlayers,
+        activeTeam: state.root.activeTeam.activeTeam
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        actions: bindActionCreators(Object.assign({}, Actions, TeamActions), dispatch)
     };
 }
 

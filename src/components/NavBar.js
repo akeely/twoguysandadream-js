@@ -11,6 +11,11 @@ export default class NavBar extends Component {
 
         const leagueId = this.props.leagueId;
 
+        const adds = this.props.numAdds;
+        let Badge = () => (<span></span>);
+        if (adds > 0) {
+            Badge = () => (<span className="badge">{adds}</span>);
+        }
         return (
             <nav className="navbar navbar-default navbar-static-top">
                 <div className="container">
@@ -20,7 +25,7 @@ export default class NavBar extends Component {
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
                             <li><NavLink activeClassName="active" to={`/league/${leagueId}/auction`}>Auction</NavLink></li>
-                            <li><NavLink activeClassName="active" to={`/league/${leagueId}/availableplayers`}>Add Player</NavLink></li>
+                            <li><NavLink activeClassName="active" to={`/league/${leagueId}/availableplayers`}>Add Player <Badge/></NavLink></li>
                             <li><NavLink activeClassName="active" to={`/league/${leagueId}/results`}>Draft Results</NavLink></li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">

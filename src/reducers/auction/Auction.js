@@ -1,12 +1,10 @@
 import {
     RECEIVE_AUCTION_BOARD,
-    RECEIVE_TEAM,
     REMOVE_BID
 } from '../../actions/Auction';
 
 export const initialState = {
-    auctionPlayers: [],
-    activeTeam: {id: -1}
+    auctionPlayers: []
 };
 
 export const State = {
@@ -96,11 +94,6 @@ export default function auction(state = initialState, action) {
               ...state,
               ...getAuctionBoard(state.auctionPlayers, action.auctionPlayers)
             };
-        case RECEIVE_TEAM:
-            return {
-                ...state,
-                activeTeam: action.activeTeam
-            }
         case REMOVE_BID:
             return {
                 ...state,

@@ -39,19 +39,21 @@ export function getAvailablePlayers(leagueId) {
     };
 }
 
-function acceptAdd(playerId) {
+function acceptAdd(playerId, playerName) {
 
     return {
         type: ACCEPT_ADD,
-        playerId
+        playerId,
+        playerName
     };
 }
 
-function failedAdd(response) {
+function failedAdd(response, playerName) {
 
     return {
         type: FAILED_ADD,
-        errorResponse: response
+        errorResponse: response,
+        playerName
     };
 }
 
@@ -63,7 +65,7 @@ function attemptAdd(playerId) {
     };
 }
 
-export function addPlayer(leagueId, playerId) {
+export function addPlayer(leagueId, playerId, playerName) {
 
     return (dispatch) => {
         dispatch(attemptAdd(playerId));
@@ -72,7 +74,7 @@ export function addPlayer(leagueId, playerId) {
         const header = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
 
         axios.post(`http://localhost:8080/api/league/${leagueId}/bid`, {playerId}, {headers: {[header]: token}})
-            .then((response)  => dispatch(acceptAdd(playerId)))
-            .catch((response) => dispatch(failedAdd(response)));
+            .then((response)  => dispatch(acceptAdd(playerId, playerName)))
+            .catch((response) => dispatch(failedAdd(response, playerName)));
     };
 }

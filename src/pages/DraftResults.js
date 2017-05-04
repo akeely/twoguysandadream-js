@@ -16,7 +16,7 @@ import * as Actions from '../actions/DraftResults';
 import * as TeamActions from '../actions/Team';
 
 
-class AddPlayer extends React.Component {
+class DraftResults extends React.Component {
 
     loadPlayers() {
 
@@ -106,4 +106,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddPlayer);
+export default connect(mapStateToProps, mapDispatchToProps)(DraftResults);

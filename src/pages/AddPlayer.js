@@ -44,6 +44,20 @@ class AddPlayer extends React.Component {
                 />
             );
 
+        const hasNotifications = this.props.addedPlayers.length > 0 || this.props.failedAdds.length > 0;
+
+        const Added = this.props.addedPlayers
+            .map((name) => () => <div className="alert alert-success" key={name}>Added {name}</div>);
+        const Failed = this.props.failedAdds
+            .map((name) => () => <div className="alert alert-danger" key={name}>Adding {name} failed.</div>);
+
+        const Alerts = () => (
+            <div className="well">
+                {Added}
+                {Failed}
+            </div>
+        );
+
         const Players = () => (
 
             <BootstrapTable
@@ -72,6 +86,7 @@ class AddPlayer extends React.Component {
                     Positions
                 </TableHeaderColumn>
                 <TableHeaderColumn
+                    dataAlign="center"
                     dataField="id"
                     dataFormat={formatAdd}>
 
@@ -88,6 +103,7 @@ class AddPlayer extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8">
+                            {hasNotifications && <Alerts />}
                             <div className="panel">
                                 <Players />
                             </div>

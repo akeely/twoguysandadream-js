@@ -5,7 +5,9 @@ import {
 } from '../../actions/AddPlayer';
 
 export const initialState = {
-    availablePlayers: []
+    availablePlayers: [],
+    addedPlayers: [],
+    failedAdds: []
 };
 
 const removePlayer = (availablePlayers, playerId) => {
@@ -24,10 +26,16 @@ export default function addPlayer(state = initialState, action) {
                 availablePlayers: action.availablePlayers
             };
         case ACCEPT_ADD:
+
+            state.addedPlayers.push(action.playerName);
             return {
                 ...state,
                 availablePlayers: removePlayer(state.availablePlayers, action.playerId)
             };
+        case FAILED_ADD:
+
+            state.failedAdds.push(action.playerName);
+            return state;
         default:
             return state;
     }

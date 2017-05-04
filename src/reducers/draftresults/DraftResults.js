@@ -27,8 +27,6 @@ const getPlayersWonForTeam = (team) => {
 
 const getPlayersWon = (leagueData) => {
 
-    console.log(leagueData);
-
     const arrayWon = leagueData.teams.map(getPlayersWonForTeam);
 
     return flatten(arrayWon);

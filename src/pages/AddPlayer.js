@@ -37,24 +37,24 @@ class AddPlayer extends React.Component {
         const addFunc = this.props.actions.addPlayer.bind(this, this.props.leagueId);
 
         const formatAdd = (cell, row) => (
-                <i
-                    className="fa fa-plus-circle fa-lg"
-                    onClick={addFunc.bind(this, cell)}
-                    style={{cursor: 'pointer', color: '#337ab7', textAlign: 'center'}}
-                />
-            );
+            <i
+                className="fa fa-plus-circle fa-lg"
+                onClick={addFunc.bind(this, cell, row.name)}
+                style={{cursor: 'pointer', color: '#337ab7', textAlign: 'center'}}
+            />
+        );
 
         const hasNotifications = this.props.addedPlayers.length > 0 || this.props.failedAdds.length > 0;
 
-        const Added = this.props.addedPlayers
-            .map((name) => () => <div className="alert alert-success" key={name}>Added {name}</div>);
-        const Failed = this.props.failedAdds
-            .map((name) => () => <div className="alert alert-danger" key={name}>Adding {name} failed.</div>);
+        const added = this.props.addedPlayers
+            .map((name) => <div className="alert alert-success" key={name}>Added {name}</div>);
+        const failed = this.props.failedAdds
+            .map((name) => <div className="alert alert-danger" key={name}>Adding {name} failed.</div>);
 
         const Alerts = () => (
-            <div className="well">
-                {Added}
-                {Failed}
+            <div>
+                {added}
+                {failed}
             </div>
         );
 

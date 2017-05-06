@@ -1,7 +1,8 @@
 import {
     RECEIVE_AVAILABLE,
     ACCEPT_ADD,
-    FAILED_ADD
+    FAILED_ADD,
+    CLEAR_ALERTS
 } from '../../actions/AddPlayer';
 
 export const initialState = {
@@ -35,6 +36,12 @@ export default function addPlayer(state = initialState, action) {
         case FAILED_ADD:
 
             state.failedAdds.push(action.playerName);
+            return state;
+
+        case CLEAR_ALERTS:
+            state.addedPlayers = [];
+            state.failedAdds = [];
+
             return state;
         default:
             return state;

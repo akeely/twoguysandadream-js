@@ -28,6 +28,10 @@ class AddPlayer extends React.Component {
         this.loadPlayers();
     };
 
+    componentWillUnmount() {
+        this.props.actions.clearAlerts();
+    }
+
     render() {
 
         const availablePlayers = this.props.availablePlayers;

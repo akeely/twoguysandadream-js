@@ -8,6 +8,8 @@ export const ATTEMPT_ADD = 'ATTEMPT_BID';
 export const ACCEPT_ADD = 'ACCEPT_ADD';
 export const FAILED_ADD = 'FAILED_ADD';
 
+export const CLEAR_ALERTS = "CLEAR_ALERTS";
+
 function requestAvailablePlayers() {
     return {
         type: REQUEST_AVAILABLE
@@ -77,4 +79,11 @@ export function addPlayer(leagueId, playerId, playerName) {
             .then((response)  => dispatch(acceptAdd(playerId, playerName)))
             .catch((response) => dispatch(failedAdd(response, playerName)));
     };
+}
+
+export function clearAlerts() {
+
+    return {
+        type: CLEAR_ALERTS
+    }
 }

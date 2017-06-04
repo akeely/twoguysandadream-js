@@ -33,7 +33,7 @@ export function getAvailablePlayers(leagueId) {
     return (dispatch) => {
         dispatch(requestAvailablePlayers());
 
-        axios.get(`http://localhost:8080/api/league/${leagueId}/player?available=true`)
+        axios.get(`${process.env.REACT_APP_SERVER}:8080/api/league/${leagueId}/player?available=true`)
             .then((response)  => dispatch(receiveAvailablePlayers(response)))
             .catch((response) => dispatch(errorAvailablePlayers(response)));
     };
@@ -73,7 +73,7 @@ export function addPlayer(leagueId, playerId, playerName) {
         const token = document.querySelector("meta[name='_csrf']").getAttribute('content');
         const header = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
 
-        axios.post(`http://localhost:8080/api/league/${leagueId}/bid`, {playerId}, {headers: {[header]: token}})
+        axios.post(`${process.env.REACT_APP_SERVER}:8080/api/league/${leagueId}/bid`, {playerId}, {headers: {[header]: token}})
             .then((response)  => dispatch(acceptAdd(playerId, playerName)))
             .catch((response) => dispatch(failedAdd(response, playerName)));
     };

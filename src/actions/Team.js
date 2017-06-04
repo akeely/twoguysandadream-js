@@ -29,7 +29,7 @@ export function getTeam(leagueId) {
     return (dispatch) => {
         dispatch(requestTeam());
 
-        axios.get(`http://localhost:8080/api/league/${leagueId}/team/me`)
+        axios.get(`${process.env.REACT_APP_SERVER}:8080/api/league/${leagueId}/team/me`)
             .then((response)  => dispatch(receiveTeam(response)))
             .catch((response) => dispatch(errorTeam(response)));
     };

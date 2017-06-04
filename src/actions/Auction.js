@@ -34,7 +34,7 @@ export function getAuctionBoard(leagueId) {
     return (dispatch) => {
         dispatch(requestAuctionBoard());
 
-        axios.get(`http://localhost:8080/api/league/${leagueId}/bid`)
+        axios.get(`${process.env.REACT_APP_SERVER}:8080/api/league/${leagueId}/bid`)
             .then((response)  => dispatch(receiveAuctionBoard(response)))
             .catch((response) => dispatch(errorAuctionBoard(response)));
     };
@@ -80,7 +80,7 @@ export function putBid(leagueId, playerId, amount) {
         const token = document.querySelector("meta[name='_csrf']").getAttribute('content');
         const header = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
 
-        axios.put(`http://localhost:8080/api/league/${leagueId}/bid/${playerId}`, {amount}, {headers: {[header]: token}})
+        axios.put(`${process.env.REACT_APP_SERVER}:8080/api/league/${leagueId}/bid/${playerId}`, {amount}, {headers: {[header]: token}})
             .then((response)  => dispatch(acceptBid(response)))
             .catch((response) => dispatch(failedBid(response)));
     };

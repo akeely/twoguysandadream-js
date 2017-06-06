@@ -46,26 +46,31 @@ class DraftResults extends React.Component {
                     striped>
                 <TableHeaderColumn
                         dataField="player"
-                        dataFormat={p => p.name}>
+                        dataFormat={p => p.name}
+                        dataSort>
                     Player
                 </TableHeaderColumn>
                 <TableHeaderColumn
                         dataField="player"
-                        dataFormat={p => p.realTeam}>
+                        dataFormat={p => p.realTeam}
+                        dataSort>
                     Team
                 </TableHeaderColumn>
                 <TableHeaderColumn
                         dataField="player"
-                        dataFormat={formatPositions}>
+                        dataFormat={formatPositions}
+                        dataSort>
                     Positions
                 </TableHeaderColumn>
                 <TableHeaderColumn
-                        dataField="team">
+                        dataField="team"
+                        dataSort>
                     Owner
                 </TableHeaderColumn>
                 <TableHeaderColumn
                         dataField="cost"
-                        dataFormat={c => '$' + c.toFixed(2)}>
+                        dataFormat={c => '$' + c.toFixed(2)}
+                        dataSort>
                     Price
                 </TableHeaderColumn>
             </BootstrapTable>

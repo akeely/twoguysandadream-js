@@ -8,9 +8,11 @@ import {
 
 import AuctionBoard from '../components/auction/AuctionBoard';
 import TeamSummary from '../components/auction/TeamSummary';
+import CommissionerTools from '../components/auction/CommissionerTools';
 import NavBar from '../components/NavBar';
 import * as Actions from '../actions/Auction';
 import * as TeamActions from '../actions/Team';
+import * as LeagueActions from '../actions/League';
 
 let intervalId = null;
 
@@ -20,6 +22,7 @@ class Auction extends React.Component {
 
         this.props.actions.getAuctionBoard(this.props.leagueId);
         this.props.actions.getTeam(this.props.leagueId);
+        this.props.actions.getLeague(this.props.leagueId);
     };
 
     componentDidMount() {
@@ -37,6 +40,8 @@ class Auction extends React.Component {
 
     render() {
 
+        const updateDraftStatus = this.props.actions.updateDraftStatus.bind(null, this.props.leagueId);
+
         return (
             <div>
                 <NavBar
@@ -44,6 +49,11 @@ class Auction extends React.Component {
                     numAdds={this.props.activeTeam.statistics.adds}
                 />
                 <div className="container">
+                    <CommissionerTools
+                        isCommissioner={this.props.activeTeam.commissioner}
+                        isPaused={this.props.league.paused}
+                        updateDraftStatus={updateDraftStatus}
+                    />
                     <div className="row">
                         <div className="col-md-8">
                             <div className="panel">
@@ -52,6 +62,7 @@ class Auction extends React.Component {
                                     auctionPlayers={this.props.auctionPlayers}
                                     bidFunction={this.props.actions.putBid}
                                     leagueId={this.props.leagueId}
+                                    isPaused={this.props.league.paused}
                                     removeFunction={this.props.actions.removeBid}
                                 />
                             </div>
@@ -78,13 +89,14 @@ function mapStateToProps(state, ownProps) {
     return {
         leagueId: ownProps.match.params.leagueId,
         ...state.root.auctionPlayers,
-        activeTeam: state.root.activeTeam.activeTeam
+        activeTeam: state.root.activeTeam.activeTeam,
+        league: state.root.league.league
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Object.assign({}, Actions, TeamActions), dispatch)
+        actions: bindActionCreators(Object.assign({}, Actions, TeamActions, LeagueActions), dispatch)
     };
 }
 

@@ -19,6 +19,7 @@ export default class AuctionBoard extends Component {
             activeTeam,
             auctionPlayers,
             bidFunction,
+            isPaused,
             removeFunction
         } = this.props;
 
@@ -27,6 +28,7 @@ export default class AuctionBoard extends Component {
                 activeTeam={activeTeam}
                 bid={bid}
                 bidFunction={bidFunction}
+                isPaused={isPaused}
                 key={'bid.' + bid.player.id}
                 leagueId={this.props.leagueId}
                 removeFunction={removeFunction.bind(undefined, bid.player.id)}

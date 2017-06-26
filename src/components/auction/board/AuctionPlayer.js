@@ -8,10 +8,13 @@ import {State} from '../../../reducers/auction/Auction';
 
 export default class AuctionPlayer extends React.Component {
 
-    toTimeString(time, state) {
+    toTimeString(time, state, isPaused) {
 
         if (state === State.EXPIRED) {
             return 'EXPIRED';
+        }
+        if (isPaused) {
+            return "PAUSED";
         }
 
         return moment.duration(time, 'seconds').format('m:ss', {trim: false});
@@ -21,7 +24,7 @@ export default class AuctionPlayer extends React.Component {
 
         const secondsRemaining = this.props.bid.secondsRemaining;
         const state = this.props.bid.state;
-        const timeString = this.toTimeString(secondsRemaining, state);
+        const timeString = this.toTimeString(secondsRemaining, state, this.props.isPaused);
         const activeTeam = this.props.activeTeam;
         const teamId = this.props.bid.teamId;
 

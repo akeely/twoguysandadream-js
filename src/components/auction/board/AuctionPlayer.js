@@ -10,11 +10,12 @@ export default class AuctionPlayer extends React.Component {
 
     toTimeString(time, state, isPaused) {
 
-        if (state === State.EXPIRED) {
-            return 'EXPIRED';
-        }
         if (isPaused) {
             return "PAUSED";
+        }
+
+        if (state === State.EXPIRED) {
+            return 'EXPIRED';
         }
 
         return moment.duration(time, 'seconds').format('m:ss', {trim: false});
@@ -30,7 +31,7 @@ export default class AuctionPlayer extends React.Component {
 
         let highlightClass = '';
 
-        if (state === State.EXPIRED) {
+        if (state === State.EXPIRED && !this.props.isPaused) {
             highlightClass = 'danger';
         } else if (state === State.NEW || state === State.UPDATED) {
             highlightClass = 'warning';

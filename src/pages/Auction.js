@@ -54,9 +54,9 @@ class Auction extends React.Component {
                         isPaused={this.props.league.paused}
                         updateDraftStatus={updateDraftStatus}
                     />
-                    <div className="row">
-                        <div className="col-md-8">
-                            <div className="panel">
+                    <div className="panel panel-default">
+                        <div className="panel-body row">
+                            <div className="col-md-6">
                                 <AuctionBoard
                                     activeTeam={this.props.activeTeam.id}
                                     auctionPlayers={this.props.auctionPlayers}
@@ -66,19 +66,16 @@ class Auction extends React.Component {
                                     removeFunction={this.props.actions.removeBid}
                                 />
                             </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="panel">
+                            <div className="col-md-6">
                                 <TeamSummary
                                     activeTeam={this.props.activeTeam.id}
                                     leagueId={this.props.leagueId}
                                     pollInterval="2000"
                                 />
                             </div>
-                        </div>
+                        </div>    
                     </div>
                 </div>
-
             </div>
         );
     };

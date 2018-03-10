@@ -11,19 +11,19 @@ export default class Roster extends React.Component {
         );
 
         return (
-            <table className="table table-striped table-condensed">
+            <table className="table table-striped table-condensed small">
                 <thead>
-                <tr>
-                    <th colSpan="3">{this.props.team.name}</th>
-                </tr>
-                <tr>
-                    <th>Player</th>
-                    <th>Cost</th>
-                    <th>Pos</th>
-                </tr>
+                    <tr>
+                        <th colspan="3" className="info">{this.props.team.name}</th>
+                    </tr>
+                    <tr>
+                        <th>Player</th>
+                        <th>Cost</th>
+                        <th>Pos</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {playersWon}
+                    {playersWon}
                 </tbody>
             </table>
         );

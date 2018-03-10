@@ -10,11 +10,12 @@ export default class AuctionPlayer extends React.Component {
 
     toTimeString(time, state, isPaused) {
 
-        if (state === State.EXPIRED) {
-            return 'EXPIRED';
-        }
         if (isPaused) {
             return "PAUSED";
+        }
+
+        if (state === State.EXPIRED) {
+            return 'EXPIRED';
         }
 
         return moment.duration(time, 'seconds').format('m:ss', {trim: false});
@@ -30,7 +31,7 @@ export default class AuctionPlayer extends React.Component {
 
         let highlightClass = '';
 
-        if (state === State.EXPIRED) {
+        if (state === State.EXPIRED && !this.props.isPaused) {
             highlightClass = 'danger';
         } else if (state === State.NEW || state === State.UPDATED) {
             highlightClass = 'warning';
@@ -40,15 +41,28 @@ export default class AuctionPlayer extends React.Component {
 
         return (
             <tr className={highlightClass} id={'bid.' + this.props.bid.player.id}>
-                <td>{this.props.bid.player.name}</td>
-                <td>{this.props.bid.player.positions
-                        .map(function(pos) { return pos.name; })
-                        .join(', ')}
+                <td>
+                    <p className="form-control-static">
+                        {this.props.bid.player.name}
+                        <span className="text-muted small">
+                            {this.props.bid.player.team} - 
+                            {this.props.bid.player.positions
+                            .map(function(pos) { return pos.name; })
+                            .join(', ')}
+                        </span>
+                    </p>
                 </td>
-                <td>{this.props.bid.amount}</td>
-                <td>{this.props.bid.team}</td>
-                <td className={secondsRemaining < 21 ? 'warning' : ''}>{timeString}</td>
-                <td className="text-center" width="110">
+                <td>
+                    <p className="form-control-static">
+                        <strong>${this.props.bid.amount}</strong> 
+                        <span className="text-muted small">bid by</span> 
+                        {this.props.bid.team}
+                    </p>
+                </td>
+                <td className={secondsRemaining < 21 ? 'warning text-center' : 'text-center'}>
+                    <p className="form-control-static">{timeString}</p>
+                </td>
+                <td>
                     <BidColumn
                         bid={this.props.bid}
                         bidFunction={this.props.bidFunction}

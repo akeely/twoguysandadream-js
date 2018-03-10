@@ -45,14 +45,14 @@ export default class BidEntry extends React.Component {
             <div className="input-group input-group-sm">
                 <input
                     aria-label="Bid"
-                    className="form-control"
+                    className="form-control input-sm"
                     id={this.bidId(playerId)}
                     min={this.minBid(currentBid)}
                     step={this.stepAmount(currentBid)}
                     type="number"
                 />
                 <div className="input-group-btn">
-                    <button aria-label="Bid" className="btn btn-default" onClick={this.bid} type="button">Bid</button>
+                    <button aria-label="Bid" className="btn btn-default btn-sm" onClick={this.bid} type="button">Bid</button>
                 </div>
             </div>
         );

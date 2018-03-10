@@ -25,8 +25,10 @@ export default class Team extends React.Component {
                 <td><a href="#" onClick={this.updateTeam}>{this.props.team.name}</a></td>
                 <td>{this.props.team.statistics.availableBudget}</td>
                 <td>{this.props.team.statistics.maxBid}</td>
-                <td>{this.props.team.statistics.openRosterSpots}</td>
-                <td>{this.props.team.statistics.adds}</td>
+                <td>
+                    {this.props.team.statistics.openRosterSpots}&#47;16 
+                    <span className="badge">{this.props.team.statistics.adds}</span>
+                </td>
             </tr>
         );
     }

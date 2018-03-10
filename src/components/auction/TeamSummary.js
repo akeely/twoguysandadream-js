@@ -40,7 +40,7 @@ export default class TeamSummary extends React.Component {
 
         const leagueId = this.state.leagueId;
 
-        axios.get(`${process.env.REACT_APP_SERVER}:8080/api/league/${leagueId}/team`)
+        axios.get(`${process.env.REACT_APP_SERVER}:8080/api/league/${leagueId}/team/`)
             .then((response)  => this.setState({teams: response.data.sort(this.compareTeams)}));
 
     }
@@ -52,16 +52,20 @@ export default class TeamSummary extends React.Component {
 
     render() {
         return (
-            <div>
-                <Teams
-                    currentTeam={this.state.currentTeam}
-                    teams={this.state.teams}
-                    updateTeam={this.updateCurrentTeam}
-                />
-                <Rosters
-                    currentTeam={this.state.currentTeam}
-                    teams={this.state.teams}
-                />
+            <div className="row">
+                <div className="col-md-7">
+                    <Teams
+                        currentTeam={this.state.currentTeam}
+                        teams={this.state.teams}
+                        updateTeam={this.updateCurrentTeam}
+                    />
+                </div>
+                <div className="col-md-5">
+                    <Rosters
+                        currentTeam={this.state.currentTeam}
+                        teams={this.state.teams}
+                    />
+                </div>
             </div>
         );
     }

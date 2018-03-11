@@ -1,7 +1,4 @@
-import React, {
-    Component,
-    PropTypes
-} from 'react';
+import React, { Component } from 'react';
 
 import { NavLink } from 'react-router-dom'
 
@@ -41,4 +38,4 @@ export default class NavBar extends Component {
             </nav>
         );
     };
-};
+}

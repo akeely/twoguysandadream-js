@@ -1,7 +1,5 @@
-import React, {
-    Component,
-    PropTypes
-} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 export default class CommissionerTools extends Component {
 
@@ -49,4 +47,4 @@ export default class CommissionerTools extends Component {
             </div>
         );
     };
-};
+}

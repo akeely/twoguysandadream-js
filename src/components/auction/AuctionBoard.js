@@ -34,21 +34,23 @@ export default class AuctionBoard extends Component {
         );
 
         return (
-            <table className="table table-striped table-condensed">
+            <table className="table table-striped table-condensed small">
                 <thead>
-                <tr>
-                    <th>Player</th>
-                    <th>Position</th>
-                    <th>Current Bid</th>
-                    <th>Bidder</th>
-                    <th>Time Remaining</th>
-                    <th>Bid</th>
-                </tr>
+                    <tr>
+                        <th colspan="4" className="success">Auction</th>
+                    </tr>
+                    <tr>
+                        <th width="35%">Player</th>
+                        <th width="33%">Current Bid</th>
+                        <th width="12%" className="text-center">Time</th>
+                        <th width="12%" className="text-center">Bid</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {bids}
+                    {bids}
                 </tbody>
             </table>
         );
     };
-}
+};
+

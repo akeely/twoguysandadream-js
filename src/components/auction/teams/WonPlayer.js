@@ -13,9 +13,8 @@ export default class WonPlayer extends React.Component {
 
         return (
             <tr>
-                <td>{player.name}</td>
+                <td>{player.name} - <span className="text-muted small">{positions}</span></td>
                 <td>${cost}</td>
-                <td>{positions}</td>
             </tr>
         );
     }

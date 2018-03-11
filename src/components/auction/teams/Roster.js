@@ -14,12 +14,11 @@ export default class Roster extends React.Component {
             <table className="table table-striped table-condensed small">
                 <thead>
                     <tr>
-                        <th colspan="3" className="info">{this.props.team.name}</th>
+                        <th colSpan="2" className="info">{this.props.team.name}</th>
                     </tr>
                     <tr>
                         <th>Player</th>
                         <th>Cost</th>
-                        <th>Pos</th>
                     </tr>
                 </thead>
                 <tbody>

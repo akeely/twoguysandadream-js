@@ -52,15 +52,15 @@ export default class TeamSummary extends React.Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-md-7">
+            <div className="row equal">
+                <div className="col-sm-7">
                     <Teams
                         currentTeam={this.state.currentTeam}
                         teams={this.state.teams}
                         updateTeam={this.updateCurrentTeam}
                     />
                 </div>
-                <div className="col-md-5">
+                <div className="col-sm-5">
                     <Rosters
                         currentTeam={this.state.currentTeam}
                         teams={this.state.teams}

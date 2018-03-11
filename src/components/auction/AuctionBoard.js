@@ -37,13 +37,13 @@ export default class AuctionBoard extends Component {
             <table className="table table-striped table-condensed small">
                 <thead>
                     <tr>
-                        <th colspan="4" className="success">Auction</th>
+                        <th colSpan="4" className="success">Auction</th>
                     </tr>
                     <tr>
-                        <th width="35%">Player</th>
-                        <th width="33%">Current Bid</th>
-                        <th width="12%" className="text-center">Time</th>
-                        <th width="12%" className="text-center">Bid</th>
+                        <th>Player</th>
+                        <th>Current Bid</th>
+                        <th width="40" className="text-center">Time</th>
+                        <th width="120" className="text-center">Bid</th>
                     </tr>
                 </thead>
                 <tbody>

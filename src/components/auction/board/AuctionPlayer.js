@@ -43,10 +43,9 @@ export default class AuctionPlayer extends React.Component {
             <tr className={highlightClass} id={'bid.' + this.props.bid.player.id}>
                 <td>
                     <p className="form-control-static">
-                        {this.props.bid.player.name}
+                        {this.props.bid.player.name}&#160;
                         <span className="text-muted small">
-                            {this.props.bid.player.team} - 
-                            {this.props.bid.player.positions
+                            - {this.props.bid.player.positions
                             .map(function(pos) { return pos.name; })
                             .join(', ')}
                         </span>
@@ -55,8 +54,7 @@ export default class AuctionPlayer extends React.Component {
                 <td>
                     <p className="form-control-static">
                         <strong>${this.props.bid.amount}</strong> 
-                        <span className="text-muted small">bid by</span> 
-                        {this.props.bid.team}
+                        &#160;<span className="text-muted small">by</span> {this.props.bid.team}
                     </p>
                 </td>
                 <td className={secondsRemaining < 21 ? 'warning text-center' : 'text-center'}>

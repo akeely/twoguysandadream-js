@@ -1,7 +1,5 @@
-import React, {
-    Component,
-    PropTypes
-} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import AuctionPlayer from './board/AuctionPlayer';
 
@@ -55,3 +53,4 @@ export default class AuctionBoard extends Component {
         );
     };
 };
+

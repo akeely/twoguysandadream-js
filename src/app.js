@@ -1,26 +1,21 @@
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-import Auction from './pages/Auction';
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Welcome to React</h2>
+        </div>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+      </div>
+    );
+  }
+}
 
-import TeamSidebar from './components/auction/TeamSummary';
-
-import React from 'react';
-import {
-    render
-} from 'react-dom';
-import { Provider } from 'react-redux';
-
-import configureStores from './stores/configureStores';
-
-const store = configureStores();
-
-render(
-    <Provider store={store}>
-        <Auction pollInterval="500" />
-    </Provider>,
-    document.getElementById('auctionBoard')
-);
-
-render(
-    <TeamSidebar pollInterval="2000" />,
-    document.getElementById('teamSidebar')
-);
+export default App;

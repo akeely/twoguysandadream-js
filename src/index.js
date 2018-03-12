@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
+window.jQuery = window.$ = $;
+require('bootstrap');
 
 import 'font-awesome/css/font-awesome.css';
 import './index.css';

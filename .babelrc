@@ -1,8 +1,0 @@
-{
-  "plugins":[],
-  "presets":[
-    "latest",
-    "react",
-    "stage-2"
-  ]
-}

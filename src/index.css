@@ -1,0 +1,35 @@
+body, html {height: 100%;}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+
+/* The image used */
+background: -webkit-linear-gradient(rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.7) 100%), url(http://i.neoseeker.com/n/6/mlb14theshow_ps4_greenmonster.jpg) repeat 0 0;
+background: -o-linear-gradient(rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.7) 100%), url(http://i.neoseeker.com/n/6/mlb14theshow_ps4_greenmonster.jpg) repeat 0 0;
+background: linear-gradient(rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.7) 100%), url(http://i.neoseeker.com/n/6/mlb14theshow_ps4_greenmonster.jpg) repeat 0 0;
+
+/* Full height */
+height: 100%; 
+
+/* Center and scale the image nicely */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+a.navbar-brand {color:green !important;}
+
+div.row.equal {display:flex;flex-wrap:wrap;}
+#auctionBoard > div.row {border:2px solid green;background:white;}
+#auctionBoard div[class^='col-'] {padding:0;}
+#auctionBoard div[class^='col-'] table {margin:0;}
+#auctionBoard div[class^='col-'] table thead tr:nth-child(2) {background-color:#ddd !important;}
+#auctionBoard > div.row > div.col-md-6:first-child {border-right:2px solid green;}
+#auctionBoard > div.row div.row {margin:0;}
+#auctionBoard > div.row div.row > div[class^='col-']:first-child {border-right:2px solid green;}
+
+@media (max-width: 991px) {
+    #auctionBoard > div.row.equal {display:block;flex-wrap:nowrap;}
+    #auctionBoard > div.row > div.col-md-6:first-child {border-right:0;border-bottom:2px solid green;}
+}

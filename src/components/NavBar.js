@@ -17,9 +17,17 @@ export default class NavBar extends Component {
             <nav className="navbar navbar-default navbar-static-top">
                 <div className="container">
                     <div className="navbar-header">
+                        
+                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                            <span className="sr-only">Toggle navigation</span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                        </button>
+
                         <a className="navbar-brand" href="#">Two Guys and a Dream</a>
                     </div>
-                    <div id="navbar" className="navbar-collapse collapse">
+                    <div id="navbar" className="navbar-collapse">
                         <ul className="nav navbar-nav">
                             <li><NavLink activeClassName="active" to={`/league/${leagueId}/auction`}>Auction</NavLink></li>
                             <li><NavLink activeClassName="active" to={`/league/${leagueId}/availableplayers`}>Add Player <Badge/></NavLink></li>

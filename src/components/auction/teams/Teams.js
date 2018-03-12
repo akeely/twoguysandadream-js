@@ -14,18 +14,20 @@ export default class Teams extends React.Component {
         );
 
         return (
-            <table className="table table-striped table-condensed">
+            <table className="table table-striped table-condensed small">
                 <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Money</th>
-                    <th>Max</th>
-                    <th>Roster</th>
-                    <th>Adds</th>
-                </tr>
+                    <tr>
+                        <th colSpan="4" className="success">League</th>
+                    </tr>
+                    <tr>
+                        <th>Team</th>
+                        <th>Budget</th>
+                        <th>Max</th>
+                        <th>Roster</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {teams}
+                    {teams}
                 </tbody>
             </table>
         );

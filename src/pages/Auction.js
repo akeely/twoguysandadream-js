@@ -48,37 +48,32 @@ class Auction extends React.Component {
                     leagueId={this.props.leagueId}
                     numAdds={this.props.activeTeam.statistics.adds}
                 />
-                <div className="container">
+                <div className="container" id="auctionBoard">
                     <CommissionerTools
                         isCommissioner={this.props.activeTeam.commissioner}
                         isPaused={this.props.league.paused}
                         updateDraftStatus={updateDraftStatus}
                     />
-                    <div className="row">
-                        <div className="col-md-8">
-                            <div className="panel">
-                                <AuctionBoard
-                                    activeTeam={this.props.activeTeam.id}
-                                    auctionPlayers={this.props.auctionPlayers}
-                                    bidFunction={this.props.actions.putBid}
-                                    leagueId={this.props.leagueId}
-                                    isPaused={this.props.league.paused}
-                                    removeFunction={this.props.actions.removeBid}
-                                />
-                            </div>
+                    <div className="row equal">
+                        <div className="col-md-6">
+                            <AuctionBoard
+                                activeTeam={this.props.activeTeam.id}
+                                auctionPlayers={this.props.auctionPlayers}
+                                bidFunction={this.props.actions.putBid}
+                                leagueId={this.props.leagueId}
+                                isPaused={this.props.league.paused}
+                                removeFunction={this.props.actions.removeBid}
+                            />
                         </div>
-                        <div className="col-md-4">
-                            <div className="panel">
-                                <TeamSummary
-                                    activeTeam={this.props.activeTeam.id}
-                                    leagueId={this.props.leagueId}
-                                    pollInterval="2000"
-                                />
-                            </div>
+                        <div className="col-md-6">
+                            <TeamSummary
+                                activeTeam={this.props.activeTeam.id}
+                                leagueId={this.props.leagueId}
+                                pollInterval="2000"
+                            />
                         </div>
                     </div>
                 </div>
-
             </div>
         );
     };

@@ -1,7 +1,5 @@
-import React, {
-    Component,
-    PropTypes
-} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import AuctionPlayer from './board/AuctionPlayer';
 
@@ -36,21 +34,23 @@ export default class AuctionBoard extends Component {
         );
 
         return (
-            <table className="table table-striped table-condensed">
+            <table className="table table-striped table-condensed small">
                 <thead>
-                <tr>
-                    <th>Player</th>
-                    <th>Position</th>
-                    <th>Current Bid</th>
-                    <th>Bidder</th>
-                    <th>Time Remaining</th>
-                    <th>Bid</th>
-                </tr>
+                    <tr>
+                        <th colSpan="4" className="success">Auction</th>
+                    </tr>
+                    <tr>
+                        <th>Player</th>
+                        <th>Current Bid</th>
+                        <th width="40" className="text-center">Time</th>
+                        <th width="120" className="text-center">Bid</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {bids}
+                    {bids}
                 </tbody>
             </table>
         );
     };
 };
+

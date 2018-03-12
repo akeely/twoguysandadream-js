@@ -42,7 +42,7 @@ export default class BidEntry extends React.Component {
         const playerId = this.props.bid.player.id;
 
         return (
-            <div className="input-group input-group-sm">
+            <div className="input-group">
                 <input
                     aria-label="Bid"
                     className="form-control input-sm"
@@ -52,7 +52,7 @@ export default class BidEntry extends React.Component {
                     type="number"
                 />
                 <div className="input-group-btn">
-                    <button aria-label="Bid" className="btn btn-default btn-sm" onClick={this.bid} type="button">Bid</button>
+                    <button aria-label="Bid" className="btn btn-success btn-sm" onClick={this.bid} type="button">Bid</button>
                 </div>
             </div>
         );

@@ -17,7 +17,7 @@ export default class Teams extends React.Component {
             <table className="table table-striped table-condensed small">
                 <thead>
                     <tr>
-                        <th colspan="4" className="success">League</th>
+                        <th colSpan="4" className="success">League</th>
                     </tr>
                     <tr>
                         <th>Team</th>

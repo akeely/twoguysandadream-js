@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-=======
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
->>>>>>> create-react-app-new-ui
 import AuctionPlayer from './board/AuctionPlayer';
 
 export default class AuctionBoard extends Component {

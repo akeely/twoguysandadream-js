@@ -4,8 +4,6 @@ import App from './App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
-window.jQuery = window.$ = $;
-require('bootstrap');
 
 import 'font-awesome/css/font-awesome.css';
 import './index.css';
@@ -23,6 +21,8 @@ import AddPlayer from './pages/AddPlayer';
 import DraftResults from './pages/DraftResults';
 
 import configureStores from './stores/configureStores';
+
+window.jQuery = window.$ = $;
 
 const history = createHistory()
 

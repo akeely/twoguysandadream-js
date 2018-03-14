@@ -104,11 +104,11 @@ class AddPlayer extends React.Component {
                     leagueId={this.props.leagueId}
                     numAdds={this.props.activeTeam.statistics.adds}
                 />
-                <div className="container">
+                <div className="container pageBlock">
                     <div className="row">
-                        <div className="col-md-8">
-                            {hasNotifications && <Alerts />}
-                            <div className="panel">
+                        <div className="col-xs-12">
+                            <div className="panel-body">
+                                {hasNotifications && <Alerts />}
                                 <Players />
                             </div>
                         </div>

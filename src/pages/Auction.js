@@ -48,7 +48,7 @@ class Auction extends React.Component {
                     leagueId={this.props.leagueId}
                     numAdds={this.props.activeTeam.statistics.adds}
                 />
-                <div className="container" id="auctionBoard">
+                <div className="container pageBlock" id="auctionBoard">
                     <CommissionerTools
                         isCommissioner={this.props.activeTeam.commissioner}
                         isPaused={this.props.league.paused}

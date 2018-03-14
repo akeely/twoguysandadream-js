@@ -27,7 +27,7 @@ div.row.equal {
 	display: flex;
 }
 
-#auctionBoard > div.row {border:2px solid green;background:white;}
+.container.pageBlock > div.row {border:2px solid green;background:white;}
 #auctionBoard div[class^='col-'] {padding:0;}
 #auctionBoard div[class^='col-'] table {margin:0;}
 #auctionBoard div[class^='col-'] table thead tr:nth-child(2) {background-color:#ddd !important;}

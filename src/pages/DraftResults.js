@@ -82,10 +82,10 @@ class DraftResults extends React.Component {
                     leagueId={this.props.leagueId}
                     numAdds={this.props.activeTeam.statistics.adds}
                 />
-                <div className="container">
+                <div className="container pageBlock">
                     <div className="row">
-                        <div className="col-md-8">
-                            <div className="panel">
+                        <div className="col-xs-12">
+                            <div className="panel-body">
                                 <Players />
                             </div>
                         </div>

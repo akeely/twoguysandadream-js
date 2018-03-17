@@ -31,7 +31,7 @@ export default class AuctionPlayer extends React.Component {
 
         let highlightClass = '';
 
-        if (state === State.EXPIRED && !this.props.isPaused) {
+        if (state === State.EXPIRED) {
             highlightClass = 'danger';
         } else if (state === State.NEW || state === State.UPDATED) {
             highlightClass = 'warning';
@@ -57,7 +57,7 @@ export default class AuctionPlayer extends React.Component {
                         &#160;<span className="text-muted small">by</span> {this.props.bid.team}
                     </p>
                 </td>
-                <td className={secondsRemaining < 21 ? 'warning text-center' : 'text-center'}>
+                <td className={secondsRemaining < 21 && !this.props.isPaused ? 'warning text-center' : 'text-center'}>
                     <p className="form-control-static">{timeString}</p>
                 </td>
                 <td>

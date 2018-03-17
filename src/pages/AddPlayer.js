@@ -34,9 +34,12 @@ class AddPlayer extends React.Component {
 
     render() {
 
-        const availablePlayers = this.props.availablePlayers;
-
-        const formatPositions = (cell, row) => (<span>{cell.map(p => p.name).join('/')}</span>);
+        const availablePlayers = this.props.availablePlayers.map(function(player) {
+            return {
+                formattedPositions: player.positions.map(p => p.name).join('/'),
+                ...player
+            }
+        });
 
         const addFunc = this.props.actions.addPlayer.bind(this, this.props.leagueId);
 
@@ -84,8 +87,7 @@ class AddPlayer extends React.Component {
                     Team
                 </TableHeaderColumn>
                 <TableHeaderColumn
-                        dataField="positions"
-                        dataFormat={formatPositions}
+                        dataField="formattedPositions"
                         filter={{type: 'TextFilter'}}>
                     Positions
                 </TableHeaderColumn>

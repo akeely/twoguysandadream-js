@@ -31,7 +31,7 @@ export default class AuctionPlayer extends React.Component {
 
         let highlightClass = '';
 
-        if (state === State.EXPIRED && !this.props.isPaused) {
+        if (state === State.EXPIRED) {
             highlightClass = 'danger';
         } else if (state === State.NEW || state === State.UPDATED) {
             highlightClass = 'warning';

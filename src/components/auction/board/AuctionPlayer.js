@@ -57,7 +57,7 @@ export default class AuctionPlayer extends React.Component {
                         &#160;<span className="text-muted small">by</span> {this.props.bid.team}
                     </p>
                 </td>
-                <td className={secondsRemaining < 21 ? 'warning text-center' : 'text-center'}>
+                <td className={secondsRemaining < 21 && !this.props.isPaused ? 'warning text-center' : 'text-center'}>
                     <p className="form-control-static">{timeString}</p>
                 </td>
                 <td>

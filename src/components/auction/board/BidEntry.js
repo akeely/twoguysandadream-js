@@ -36,6 +36,12 @@ export default class BidEntry extends React.Component {
         this.props.bidFunction(this.props.leagueId, playerId, amount);
     };
 
+    handleKeyPress = (e) => {
+      if (e.key === 'Enter') {
+        this.bid();
+      }
+    };
+
     render() {
 
         const currentBid = this.props.bid.amount;
@@ -50,6 +56,7 @@ export default class BidEntry extends React.Component {
                     min={this.minBid(currentBid)}
                     step={this.stepAmount(currentBid)}
                     type="number"
+                    onKeyPress={this.handleKeyPress}
                 />
                 <div className="input-group-btn">
                     <button aria-label="Bid" className="btn btn-success btn-sm" onClick={this.bid} type="button">Bid</button>

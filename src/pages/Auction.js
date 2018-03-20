@@ -23,6 +23,7 @@ class Auction extends React.Component {
         this.props.actions.getAuctionBoard(this.props.leagueId);
         this.props.actions.getTeam(this.props.leagueId);
         this.props.actions.getLeague(this.props.leagueId);
+        this.props.actions.getOwner();
     };
 
     componentDidMount() {
@@ -54,6 +55,7 @@ class Auction extends React.Component {
                         isPaused={this.props.league.paused}
                         updateDraftStatus={updateDraftStatus}
                     />
+                    <h3>Owner: {this.props.owner} Team: {this.props.activeTeam.name}</h3>
                     <div className="row equal">
                         <div className="col-md-6">
                             <AuctionBoard
@@ -85,7 +87,8 @@ function mapStateToProps(state, ownProps) {
         leagueId: ownProps.match.params.leagueId,
         ...state.root.auctionPlayers,
         activeTeam: state.root.activeTeam.activeTeam,
-        league: state.root.league.league
+        league: state.root.league.league,
+        owner: state.root.activeTeam.owner
     };
 }
 

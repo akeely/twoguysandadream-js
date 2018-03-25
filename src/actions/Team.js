@@ -37,7 +37,7 @@ function requestOwner() {
 function receiveOwner(response) {
     return {
         type: RECEIVE_OWNER,
-        owner: response.name
+        owner: response.data
     };
 }
 

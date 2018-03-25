@@ -17,9 +17,11 @@ export default function team(state = initialState, action) {
                 activeTeam: action.activeTeam
             };
         case RECEIVE_OWNER:
+            console.log("Got owner:");
+            console.log(action.owner);
             return {
                 ...state,
-                owner: action.owner
+                owner: action.owner.name
             };
         default:
             return state;

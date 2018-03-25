@@ -5,15 +5,6 @@ import axios from "axios/index";
 
 class App extends Component {
 
-  getOwner() {
-      axios.get(`${process.env.REACT_APP_SERVER}:8080/api/owner/me`)
-          .then((response) => this.setState({name: response.name}));
-  }
-
-  componentDidMount() {
-    this.getOwner();
-  }
-
   render() {
 
     return (
@@ -22,7 +13,7 @@ class App extends Component {
           <h2>Welcome to TwoGuysAndADream.com</h2>
         </div>
         <p className="App-intro">
-          Welcome ${this.getState().name}.
+          Welcome.
         </p>
       </div>
     );

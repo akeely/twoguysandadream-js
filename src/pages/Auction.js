@@ -55,7 +55,6 @@ class Auction extends React.Component {
                         isPaused={this.props.league.paused}
                         updateDraftStatus={updateDraftStatus}
                     />
-                    <h3>Owner: {this.props.owner} Team: {this.props.activeTeam.name}</h3>
                     <div className="row equal">
                         <div className="col-md-6">
                             <AuctionBoard

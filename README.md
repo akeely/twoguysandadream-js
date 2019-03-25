@@ -1,3 +1,16 @@
+# twoguysandadream-js
+
+Scroll down for create-react-app README.
+
+## Deployment
+
+ - Update `.env.production` to point to the current EC2 instance (must include `http://`!!).
+ - Run `yarn run build` to build the new version
+ - Copy to S3: `aws-shell`, then `s3 sync build/static s3://tgaad-js/static`
+ - ssh into the EC2 instance and update the hashes in `config/application.yml`
+
+# create-react-app
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
